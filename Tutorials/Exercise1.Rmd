@@ -1,0 +1,60 @@
+---
+title: "Exercise 1 - Files and Directories with The Unix Shell"
+output: pdf_document
+---
+
+###After completing the tutorial activities, answer the questions below and return your answers at the beginning of lecture on Monday.
+
+1. List three arguments that can be passed to `cp` and describe what behavior these arguments induce.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2. What is the difference between an absolute and relative path? 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+3. What will be returned by `ls .` after running the code below?
+
+```{r, engine='bash', eval=FALSE}
+mkdir newStuff
+cd newStuff
+cp ../../names.txt .
+mv ../../addresses.txt ../
+cd ..
+cp newStuff/addresses.txt .
+rm -r newStuff
+```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+4. Write the code required to create a directory named `data`, copy two files (`one.txt` and `two.txt`) from your current directory to `data`, and remove the original files from the directory containing `data`.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
