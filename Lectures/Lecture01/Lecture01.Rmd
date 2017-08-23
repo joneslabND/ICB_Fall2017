@@ -1,0 +1,99 @@
+---
+title: "Lecture 01 - Welcome to Introduction to Computational Biology (ICB)"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: ../mypreamble.tex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Why biocomputation?
+
+\begin{figure}
+  \includegraphics[width=0.7\textwidth]{computational-biology.jpg}
+\end{figure}
+
+## Why biocomputation?
+
+\begin{figure}
+  \includegraphics[width=0.7\textwidth]{biocompVenn.jpg}
+\end{figure}
+
+## Course Philosophy
+
+- Teach you enough to be dangerous!  
+- Focus on exposure and general solutions rather than mastery of a particular tool 
+- Allow you to recognize when to use tools  
+- Not a bioinformatics, statistics, or modeling course (but those are available)  
+
+## Learning Goals
+
+1. Use of a powerful means to interact with local and remote computers (Unix)
+
+2. Scripting using Python or R
+
+3. Best practices and applications
+
+We'll spend approximately 1/3 of the semester on each of these goals!
+
+## Two principle aspects of programming
+
+1. Conceptual building blocks -- the focus of lecture (MW)
+
+2. Language-specific syntax -- the focus of tutorials (F)
+
+## Class preparation
+
+- No book
+- Readings or activities before many class meetings
+- Readings and assignments will be available on Sakai
+- Materials also on GitHub - https://github.com/joneslabND/ICB_Fall2017
+
+## Sakai
+
+- Announcements
+- Resources
+- Forum
+
+## Components of the Course
+Lots of moving parts because we are covering a lot of ground.
+
+Each of these components are designed and included to enhance your learning!
+
+1.  Quizzes
+2.  Good & Bad
+3.  Graded Exercises
+4.  Group Projects
+5.  Final Exam
+
+## Tutorial sections
+
+- doesn't matter what section you are registered for
+
+- what are you more interested in right now - R or Python?
+
+- we'll let you know before Friday where to go, but we won't cover scripting for a few weeks
+
+## For Friday
+- look at first episode of Shell Lesson on Software Carpentry
+- download required files
+- OSX and Linux users are all set; Windows users need to install CygWin
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  \begin{figure}
+    \includegraphics[width=0.5\textwidth]{Cygwin.jpg}
+  \end{figure}
+
+  \endcol
+\begincol{.48\textwidth}
+
+  Cygwin is a program that emulates Unix within Windows.
+
+  \endcol
+\endcols

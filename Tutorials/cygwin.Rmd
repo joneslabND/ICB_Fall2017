@@ -1,0 +1,58 @@
+---
+title: "Setting up Cygwin"
+output: pdf_document
+---
+
+Below is a description of how to get Cygwin set up for using Unix on a Windows machine.
+
+1.  Determine whether you have a 32- or 64-bit machine
+
+    + In the start menu, right click on Computer.
+
+    + Select "Properties"
+
+    + Look for 64 or 32 under System - System type:
+
+2.  Download the appropriate (64- or 32-bit) Cygwin installer from cygwin.com
+    
+    + The 2nd or 3rd link in the first line under "Current Cygwin DLL version"
+
+3.  Double click on the cygwin setup application in your Downloads folder
+
+4.  Select Run on one or two security checks
+
+5.  Select Next at the bottom of the first page of the Cygwin Setup utility
+
+6.  Select "Install from Internet" and click Next
+
+7.  Use the default Root Directory and Install for All Users and click Next
+
+8.  Use the default Local Package Directory and click Next
+
+9.  Select "Direct Connection" and click Next
+
+10.  Select the first available download site and click Next
+  
+    + A progress bar will move quickly and a window for selecting packages will open
+
+11.  On the View pull down menu select "Full"
+
+12.  Search for each of the following packages and click Skip so that it turns to the version number for the packages
+    + Editor: nano
+    + Interpretor: python2
+    + Net: curl
+    + Net: wget
+    + Debug: unzip
+    + Devel: Git
+    + Devel: Make
+    + Net: openssh
+
+13.  Change the View pull down menu to "Pending" and check that all of the above packages are on that list
+
+14.  Select Next at the bottom right of the screen
+
+15.  You may be asked if it is ok to install dependencies; say yes to this. A progress bar will move across as Cygwin and the packages are installed. This may take some time.
+
+16.  Select the box to add an icon to the Start Menu. You can also add a shortcut to the Desktop if you would like.
+
+### To run Cygwin, select it from the Start menu or the shortcut on your desk. It is best to run Cygwin as Administrator by right clicking on the icon and selecting this option.
