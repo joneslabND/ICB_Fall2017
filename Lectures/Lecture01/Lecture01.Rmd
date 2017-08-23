@@ -78,11 +78,6 @@ Each of these components are designed and included to enhance your learning!
 
 - we'll let you know before Friday where to go, but we won't cover scripting for a few weeks
 
-## For Friday
-- look at first episode of Shell Lesson on Software Carpentry
-- download required files
-- OSX and Linux users are all set; Windows users need to install CygWin
-
 \begincols
   \begincol{.48\textwidth}
   
@@ -97,3 +92,40 @@ Each of these components are designed and included to enhance your learning!
 
   \endcol
 \endcols
+
+## What's Unix?
+- A set of simple, modular tools that work on files organized in a filesystem
+- Allows for multitasking and "time sharing"
+- Developed in the C programming language at Bell Labs in the 1970's
+- Since its development, variations have been created including the open-source Linux and the basis of Mac OSX (Darwin and macOS)
+- The "GNUS's Not Unix" (GNU) project was instrumental in expansion of the open-source Lnux and development of a large number of open-source libraries used today
+
+## Why Unix?
+- Efficient 
+- Multi-tasking
+- Modularity allows for user creation of powerful tools
+- Portable and easy for communication with other computers, including large computing resources
+
+## How does Unix work?
+- A *shell* interprets commands provided by the user and passes them to the *kernel*, which does all of the work in the operating system
+- These commands are often built from a set of existing functions, but can also be custom written by users
+- A user can interact with the shell from the command line or write shell scripts in order to automate processes
+- The majority of the work done by the kernel fits the pattern of reading a file line-by-line, transforming contents of the file in some way, and writing to a new file
+
+## The Unix shell
+- Lots of versions of Unix shells have been developed over the years
+    + *sh* was the original shell developed at Bell Labs
+    + *sh* was upgraded in the late 1970's, but then completely rewritten as the Bourne shell
+    + The Bourne-Again shell, *bash* is a GNU Project version of the Bourne shell and is very common today
+    + Other common shell varieties you might encounter are C shell, *csh*, and TENEX C shell, *tcsh*
+
+## Looking ahead
+- Friday's tutorial
+    + look at first episode of Shell Lesson on Software Carpentry
+    + download required files
+    + OSX and Linux users are all set; Windows users need to install CygWin
+
+- Next week
+    + continue working through Shell Lesson on Software Carpentry
+    + quizzes on Monday and Wednesday
+  
