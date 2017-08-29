@@ -1,0 +1,73 @@
+---
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Quiz 01 - Pipes and Filters
+
+1\) If the file `numbers.txt` contains the following text:
+
+11
+
+5
+
+15
+
+25
+
+What would be the output of `cat numbers.txt | sort` and what would be the ouptut of `cat numbers.txt | sort -n`?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) Using the terms `stdin`, `stdout`, `pipe`, and `filter` describe in 1-4 sentences what the Unix shell does when provided `cat numbers.txt | wc > counts.txt`. 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Quiz 01 - Pipes and Filters
+
+1\) If the file `numbers.txt` contains the following text:
+
+11
+
+5
+
+15
+
+25
+
+What would be the output of `cat numbers.txt | sort` and what would be the ouptut of `cat numbers.txt | sort -n`?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) Using the terms `stdin`, `stdout`, `pipe`, and `filter` describe in 1-4 sentences what the Unix shell does when provided `cat numbers.txt | wc > counts.txt`. 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;

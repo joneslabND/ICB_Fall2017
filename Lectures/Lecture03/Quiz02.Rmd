@@ -1,0 +1,67 @@
+---
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Quiz 02 - Finding things
+
+1\) What is the main difference between `find` and `grep`?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+2\) Write Unix syntax that uses `$( )` to count the number of lines in all text files (have the `.txt` file extension) in your present working directory (`pwd`). 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Quiz 02 - Finding things
+
+1\) What is the main difference between `find` and `grep`?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+2\) Write Unix syntax that uses `$( )` to count the number of lines in all text files (have the `.txt` file extension) in your present working directory (`pwd`). 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Quiz 02 - Finding things
+
+1\) What is the main difference between `find` and `grep`?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+2\) Write Unix syntax that uses `$( )` to count the number of lines in all text files (have the `.txt` file extension) in your present working directory (`pwd`). 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
