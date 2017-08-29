@@ -1,0 +1,612 @@
+z$expected[1,]/sum(z$expected[1,])
+z$expected[2,]/sum(z$expected[2,])
+r=nrow(x)
+c=ncol(x)
+(r-1)*(c-1)
+sum(x[1,])*sum(x[,1])/sum(x)
+sum(x[2,])*sum(x[,2])/sum(x)
+sum(x[2,])*sum(x[,1])/sum(x)
+sum(x[2,])*sum(x[,3])/sum(x)
+3340/18
+340*18
+340/12
+3340/12
+3340/10
+?family
+library(vegan)
+?vegdist
+?dist
+0.385*365/1e6*(65100*1000)
+?vegdist
+x=runif(10)
+y=runif(10)
+cov(x,y)
+sum(x-mean(x)*(y-mean(y)))/10
+sum((x-mean(x))*(y-mean(y)))/10
+length(x)
+length(y)
+sum((x-mean(x))*(y-mean(y)))/10
+?cov
+sum((x-mean(x))*(y-mean(y)))/9
+sqrt(2)
+(250/2)^2*pi
+2*pi*3/2
+200/24
+300/24
+16/(2*pi)
+65*2*3*5
+65*2*3*5+500+500+6*20*3*5
+60*2/(2*pi)
+120/pi
+T=4:30
+k=1.07^(T-20)
+range(k)
+1.967/0.3387
+0.012/0.004
+T=20:30
+k=1.07^(T-20)
+range(k)
+?approxfun
+nsteps=500
+tscaled=(0:500)/500
+tscaled
+plot(tscaled,dnorm(tscaled,mean=0.5,sd=0.25),type='l')
+##### Simplest CH4 ecosystem model#
+##### 04-20-17#
+##### SEJ#
+#
+rm(list=ls())#
+#
+library(deSolve)#
+#
+#### set up ordinary differential equations (ODEs) in function for deSolve to use for each time step#
+	# State variables:#
+	#	1. CH4 in profundal sediment#
+	#	2. sediment organic matter in profundal sediment#
+	#	3. CH4 in littoral sediment#
+	#	4. sediment organic matter in littoral sediment#
+	#	5. CH4 in epilimnion#
+#
+timeStepCH4<-function(time,y,params){#
+	with(as.list(params),{#
+		# state variables#
+		P=y[1]	# CH4 in profundal sediment#
+		Psom=y[2]	# sediment organic matter in profundal sediment#
+		L=y[3]	# CH4 in littoral sediment#
+		Lsom=y[4]	# sediment organic matter in littoral sediment#
+		E=y[5]	# CH4 in epilimnion#
+		# forcing data#
+		GPP=varied_GPP(time)#
+		atmCH4=varied_atmCH4(time)#
+		k=varied_k(time)#
+		#dP.dt=production-diffusion; assuming no ebullition#
+		#		production=f(Psom,yield)#
+		#		diffusion=f(???)#
+		dP.dt=maxPsomUptake*Psom/(kPprod*Vp+Psom)*Psom*yield-Pdiff*(P/Vp-E/Ve)*Ap#
+		#dPsom.dt=settling material-conversion to methane-permanent burial#
+		#		settling=f(GPP,settling)#
+		#		conversion=f(Psom)#
+		#		burial=f(Psom)#
+		dPsom.dt=Ap*GPP*zmix*sed-maxPsomUptake*Psom/(kPprod*Vp+Psom)*Psom-Psom*permBuryP#
+		#dL.dt=production-diffusion-ebullition#
+		#		production=f(Lsom,yield)#
+		#		diffusion=f(E,L,???)#
+		#		ebullition=f(L,???)#
+		dL.dt=maxLsomUptake*Lsom/(kLprod*Vl+Lsom)*Lsom*yield-Ldiff*(L/Vl-E/Ve)*Al-ebull*L#
+		#dLsom.dt=settling material - conversion to methane - permanent burial#
+		#		settling=f(GPP,settling)#
+		#		conversion=f(Lsom)#
+		#		burial=f(Lsom)#
+		dLsom.dt=Al*GPP*zmix*sed-maxLsomUptake*Lsom/(kLprod*Vl+Lsom)*Lsom-Lsom*permBuryL#
+		#dEdt=production+diffusion (littoral and profundal)-atm. diffusion-oxidation#
+		#		production=f(GPP)????#
+		#		diffusion=f(E,L,P,???)#
+		#		atm. diffusion=f(E,atm)#
+		#		oxidation=f(E)#
+		dE.dt=GPP*Eprod*Ve+Pdiff*(P/Vp-E/Ve)*Ap+Ldiff*(L/Vl-E/Ve)*Al-k*(E/Ve-atmCH4)*Ae-oxE*E#
+		list(c(dP.dt,dPsom.dt,dL.dt,dLsom.dt,dE.dt))#
+	})#
+}
+Ap=1250		# Area of profundal sediments; [m2]#
+Al=250		# Area of littoral sediments; [m2]#
+Ae=Ap+Al		# Surface area of lake; [m2]#
+activeLayerDepth=0.2	# Active layer depth of sediments; [m]#
+Vp=Ap*activeLayerDepth		# Volume of "active" profundal sediments; [m3]#
+Vl=Al*activeLayerDepth		# Volume of "active" littoral sediments; [m3]#
+zmix=2	# Mixed layer depth of lake; [m]#
+Ve=Ae*zmix		# Volume of epilimnion; [m3]#
+sed=0.3		# Proportion of areal GPP that settles to sediments; []#
+maxPsomUptake=0.004	# Maximum rate of Psom uptake; [d-1]#
+kPprod=10		# half-saturation constant for methane production in profundal; [mol algal C m-3]#
+maxLsomUptake=0.004	# Maximum rate of Psom uptake; [d-1]#
+kLprod=10		# half-saturation constant for methane production in profundal; [mol algal C m-3]#
+permBuryP=0.1	# permanent burial of Psom; [d-1]#
+permBuryL=0.1	# permanent burial of Lsom; [d-1]#
+yield=0.25		# Molar yield of CH4 from algal C; [mol CH4 (mol algal C)-1]#
+Pdiff=0.001	# Mass transfer coefficient/diffusivity???; [m d-1]#
+Ldiff=0.005	# Mass transfer coefficient/diffusivity???; [m d-1]#
+ebull=0.1		# Fraction of production released as ebullition [d-1] -> could be a more complex function that causes ebullition at a critical saturating concentration; could also be probabalistic#
+Eprod=0.0001	# Epilimnetic CH4 production per unit GPP; [mol CH4 (mol C)-1]#
+oxE=0.9	# Fraction of epilimnion CH4 lost to oxidation; [d-1]#
+params=c(Vp=Vp,Vl=Vl,Ve=Ve,Ap=Ap,Al=Al,Ae=Ae,zmix=zmix,sed=sed,maxPsomUptake=maxPsomUptake,kPprod=kPprod,maxLsomUptake=maxLsomUptake,kLprod=kLprod,permBuryP=permBuryP,permBuryL=permBuryL,yield=yield,Pdiff=Pdiff,Ldiff=Ldiff,ebull=ebull,Eprod=Eprod,oxE)
+nTimeSteps=180#
+t.s=1:nTimeSteps
+constant_GPP=0.1	# [mol C m-3 d-1]Jake says this is average for morris#
+constant_atmCH4=0.1	# [mol CH4 m-3]Will thinks this is about right --> We can check this and use whatever the global average is#
+constant_k=0.4	# [m d-1]using a decent number for UNDERC lakes#
+#
+obs_GPP=NULL	# can be set to two column matrix with simulation timestep in first column and observed/modeled GPP [mol C m-3 d-1] in second column#
+obs_atmCH4=NULL	# can be set to two column matrix with simulation timestep in first column and observed/modeled atmCH4 [mol CH4 m-3] in second column#
+obs_k=NULL	# can be set to two column matrix with simulation timestep in first column and observed/modeled k [m d-1] in second column#
+#
+# generate approxfun functions for use in model integration#
+if(is.null(obs_GPP)){#
+	varied_GPP=approxfun(x=1:nTimeSteps,y=rep(constant_GPP,nTimeSteps),method="linear",rule=2)#
+}else{#
+	varied_GPP=approxfun(x=obsGPP[,1],y=obs_GPP[,2],method="linear",rule=2)#
+}#
+if(is.null(obs_atmCH4)){#
+	varied_atmCH4=approxfun(x=1:nTimeSteps,y=rep(constant_atmCH4,nTimeSteps),method="linear",rule=2)#
+}else{#
+	varied_atmCH4=approxfun(x=obs_atmCH4[,1],y=obs_atmCH4[,2],method="linear",rule=2)#
+}#
+if(is.null(obs_k)){#
+	varied_k=approxfun(x=1:nTimeSteps,y=rep(constant_k,nTimeSteps),method="linear",rule=2)#
+}else{#
+	varied_k=approxfun(x=obs_k[,1],y=obs_k[,2],method="linear",rule=2)#
+}#
+# initial values#
+init=c(P=0.2*Vp,Psom=0,L=0.2*Vl,Lsom=0,E=0.2*Ve)		# [mol CH4] starting all the same (sort of like after mixis); 200 uM#
+#### integrate model#
+out=ode(y=init,times=t.s,func=timeStepCH4,parms=params)
+dev.new()#
+par(mfrow=c(5,1))#
+plot(out[,1],out[,2],type='l',lwd=2,xlab="Time",ylab="Profundal CH4 [mol CH4]",col='black')#
+plot(out[,1],out[,3],type='l',lwd=2,xlab="Time",ylab="Profundal OM [mol algal C]",col='black',lty=2)#
+plot(out[,1],out[,4],type='l',lwd=2,xlab="Time",ylab="Littoral CH4 [mol CH4]",col='red')#
+plot(out[,1],out[,5],type='l',lwd=2,xlab="Time",ylab="Littoral OM [mol algal C]",col='red',lty=2)#
+plot(out[,1],out[,6],type='l',lwd=2,xlab="Time",ylab="Epilimnion CH4",col='green')#
+#
+print(round(out[nrow(out),],4))
+dev.new()#
+par(mfrow=c(3,2))#
+plot(out[,1],out[,2],type='l',lwd=2,xlab="Time",ylab="Profundal CH4 [mol CH4]",col='black')#
+plot(out[,1],out[,3],type='l',lwd=2,xlab="Time",ylab="Profundal OM [mol algal C]",col='black',lty=2)#
+plot(out[,1],out[,4],type='l',lwd=2,xlab="Time",ylab="Littoral CH4 [mol CH4]",col='red')#
+plot(out[,1],out[,5],type='l',lwd=2,xlab="Time",ylab="Littoral OM [mol algal C]",col='red',lty=2)#
+plot(out[,1],out[,6],type='l',lwd=2,xlab="Time",ylab="Epilimnion CH4",col='green')
+rm(list=ls())#
+#
+library(deSolve)#
+#
+#### set up ordinary differential equations (ODEs) in function for deSolve to use for each time step#
+	# State variables:#
+	#	1 to (n-1): vector of CH4 in hypolimnion layers#
+	#	n: CH4 in epilimnion#
+#
+timeStepCH4<-function(time,y,params,As,Vs){#
+	with(as.list(params),{#
+		# state variables#
+		H=y[1:N]	# CH4 in hypolimnion#
+		P=y[(N+1)]#
+		Psom=y[(N+2)]	# sediment organic matter in profundal sediment#
+		L=y[(N+3)]	# CH4 in littoral sediment#
+		Lsom=y[(N+4)]	# sediment organic matter in littoral sediment#
+		E=y[(N+5)]	# CH4 in epilimnion#
+		dH.dt=numeric(N)#
+		# forcing data#
+		GPP=varied_GPP(time)#
+		atmCH4=varied_atmCH4(time)#
+		k=varied_k(time)#
+		#dP.dt=production-diffusion; assuming no ebullition#
+		#		production=f(Psom,yield)#
+		#		diffusion=f(H,Pdiff)#
+		dP.dt=maxPsomUptake*Psom/(kPprod*(As[1]*activeLayerDepth)+Psom)*Psom*yield-(1/deltaZ)*Pdiff*(P/(As[1]*activeLayerDepth)-H[1]/Vs[1])*As[1]#
+		#dPsom.dt=settling material-conversion to methane-permanent burial#
+		#		settling=f(GPP,settling)#
+		#		conversion=f(Psom)#
+		#		burial=f(Psom)#
+		dPsom.dt=As[1]*GPP*zmix*sed-maxPsomUptake*Psom/(kPprod*(As[1]*activeLayerDepth)+Psom)*Psom-Psom*permBuryP#
+		#dH.dt=diffusion; assuming no ebullition#
+		#		diffusion=f(H,Dt)#
+		dH.dt[1]=(1/deltaZ)*(Pdiff*(P/(As[1]*activeLayerDepth)-H[1]/Vs[1])*As[1]+Hdiff*(H[2]/Vs[2]-H[1]/Vs[1])*As[2])#
+		for(i in 2:(N-1)){#
+			dH.dt[i]=(1/deltaZ)*Hdiff*((H[(i+1)]/Vs[(i+1)]-H[i]/Vs[i])*As[(i+1)]+(H[(i-1)]/Vs[(i-1)]-H[i]/Vs[i])*As[i])#
+		}#
+		dH.dt[N]=(1/deltaZ)*Hdiff*((E/Vs[(N+1)]-H[N]/Vs[N])*As[(N+1)]+(H[(N-1)]/Vs[N-1]-H[i]/Vs[i])*As[N])#
+		#dL.dt=production-diffusion-ebullition#
+		#		production=f(Lsom,yield)#
+		#		diffusion=f(E,L,???)#
+		#		ebullition=f(L,???)#
+		dL.dt=maxLsomUptake*Lsom/(kLprod*(As[(N+2)]*activeLayerDepth)+Lsom)*Lsom*yield-(1/deltaZ)*Ldiff*(L/(As[(N+2)]*activeLayerDepth)-E/Vs[(N+1)])*As[(N+2)]-ebull*L#
+		#dLsom.dt=settling material - conversion to methane - permanent burial#
+		#		settling=f(GPP,settling)#
+		#		conversion=f(Lsom)#
+		#		burial=f(Lsom)#
+		dLsom.dt=As[(N+2)]*GPP*zmix*sed-maxLsomUptake*Lsom/(kLprod*(As[(N+2)]*activeLayerDepth)+Lsom)*Lsom-Lsom*permBuryL#
+		#dEdt=production+diffusion (littoral and profundal)-atm. diffusion-oxidation#
+		#		production=f(GPP)????#
+		#		diffusion=f(E,L,P,???)#
+		#		atm. diffusion=f(E,atm)#
+		#		oxidation=f(E)#
+		dE.dt=GPP*Eprod*Vs[(N+1)]+(1/deltaZ)*Hdiff*(E/Vs[(N+1)]-H[N]/Vs[N])*As[(N+1)]+(1/deltaZ)*Ldiff*(L/(As[(N+2)]*activeLayerDepth)-E/Vs[(N+1)])*As[(N+2)]-k*(E/Vs[(N+1)]-atmCH4)*As[(N+3)]-oxE*E#
+		list(c(dH.dt,dP.dt,dPsom.dt,dL.dt,dLsom.dt,dE.dt))#
+	})#
+}
+zmax=6#
+zmix=2	# Mixed layer depth of lake; [m]#
+deltaZ=0.25					# hypolimnion slice thickness; [m]#
+N=(zmax-zmix)/deltaZ			# number of hypolimnion slices;#
+activeLayerDepth=0.2	# Active layer depth of sediments; [m]#
+Pdiff=0.05		# diffusivity; [m2 d-1]#
+Hdiff=0.15		# diffusivity; [m2 d-1]#
+sed=0.3		# Proportion of areal GPP that settles to sediments; []#
+maxPsomUptake=0.04	# Maximum rate of Psom uptake; [d-1]#
+kPprod=10		# half-saturation constant for methane production in profundal; [mol algal C m-3]#
+maxLsomUptake=0.04	# Maximum rate of Psom uptake; [d-1]#
+kLprod=10		# half-saturation constant for methane production in profundal; [mol algal C m-3]#
+permBuryP=0.1	# permanent burial of Psom; [d-1]#
+permBuryL=0.1	# permanent burial of Lsom; [d-1]#
+yield=0.25		# Molar yield of CH4 from algal C; [mol CH4 (mol algal C)-1]#
+Ldiff=0.05		# diffusivity; [m2 d-1]#
+ebull=0.1		# Fraction of production released as ebullition [d-1] -> could be a more complex function that causes ebullition at a critical saturating concentration; could also be probabalistic#
+Eprod=0.0001	# Epilimnetic CH4 production per unit GPP; [mol CH4 (mol C)-1]#
+oxE=0.99		# Fraction of epilimnion CH4 lost to oxidation; [d-1]#
+#
+# for now an upside-down tophat shaped lake with radius of pelagic=900 m, and littoral zone 100 m wide#
+As=c(rep(pi*900^2,N+1),(pi*1000^2-pi*900^2),pi*1000^2)		# interface areas; [m2]#
+Vs=c(rep(pi*900^2*deltaZ,N),pi*1000^2*zmix)		# layer volumes; [m3]#
+#
+params=c(activeLayerDepth=activeLayerDepth,deltaZ=deltaZ,N=16,Pdiff=Pdiff,Hdiff=Hdiff,zmix=zmix,sed=sed,maxPsomUptake=maxPsomUptake,kPprod=kPprod,maxLsomUptake=maxLsomUptake,kLprod=kLprod,permBuryP=permBuryP,permBuryL=permBuryL,yield=yield,Ldiff=Ldiff,ebull=ebull,Eprod=Eprod,oxE)#
+#### forcing data (GPP, atmCH4, k) and run parameters#
+nTimeSteps=360#
+t.s=1:nTimeSteps#
+#
+# Could load observations, model output, or set to a constant#
+constant_GPP=0.1	# [mol C m-3 d-1]Jake says this is average for morris --> Stuart will remember how to do this dynamically#
+constant_atmCH4=0.1	# [mol CH4 m-3]Will thinks this is about right --> We can check this and use whatever the global average is#
+constant_k=0.4	# [m d-1]using a decent number for UNDERC lakes#
+#
+obs_GPP=NULL	# can be set to two column matrix with simulation timestep in first column and observed/modeled GPP [mol C m-3 d-1] in second column#
+obs_atmCH4=NULL	# can be set to two column matrix with simulation timestep in first column and observed/modeled atmCH4 [mol CH4 m-3] in second column#
+obs_k=NULL	# can be set to two column matrix with simulation timestep in first column and observed/modeled k [m d-1] in second column#
+#
+# generate approxfun functions for use in model integration#
+if(is.null(obs_GPP)){#
+	varied_GPP=approxfun(x=1:nTimeSteps,y=rep(constant_GPP,nTimeSteps),method="linear",rule=2)#
+}else{#
+	varied_GPP=approxfun(x=obsGPP[,1],y=obs_GPP[,2],method="linear",rule=2)#
+}#
+if(is.null(obs_atmCH4)){#
+	varied_atmCH4=approxfun(x=1:nTimeSteps,y=rep(constant_atmCH4,nTimeSteps),method="linear",rule=2)#
+}else{#
+	varied_atmCH4=approxfun(x=obs_atmCH4[,1],y=obs_atmCH4[,2],method="linear",rule=2)#
+}#
+if(is.null(obs_k)){#
+	varied_k=approxfun(x=1:nTimeSteps,y=rep(constant_k,nTimeSteps),method="linear",rule=2)#
+}else{#
+	varied_k=approxfun(x=obs_k[,1],y=obs_k[,2],method="linear",rule=2)#
+}
+init=rep(0,(N+5))		# [mol CH4] starting all the same (sort of like after mixis); 200 uM#
+#### integrate model#
+out=ode(y=init,times=t.s,func=timeStepCH4,parms=params,As=As,Vs=Vs)#
+#
+#### plot output#
+profundalSedV=As[1]*activeLayerDepth#
+littoralSedV=As[(N+2)]*activeLayerDepth#
+#
+# generate concentration data in uM CH4#
+outConc=out#
+outConc[,2:(N+1)]=out[,2:(N+1)]/Vs[1:N]*1000#
+outConc[,(N+2)]=out[,(N+2)]/profundalSedV*1000#
+outConc[,(N+3)]=out[,(N+3)]/profundalSedV*1000#
+outConc[,(N+4)]=out[,(N+4)]/littoralSedV*1000#
+outConc[,(N+5)]=out[,(N+5)]/littoralSedV*1000#
+outConc[,(N+6)]=out[,(N+6)]/Vs[(N+1)]*1000#
+#
+dev.new()#
+par(mfrow=c(2,4))#
+plot(outConc[,1],outConc[,(N+2)],type='l',lwd=2,xlab="Time",ylab="Profundal sed. CH4 [uM CH4]",col='black')#
+plot(outConc[,1],outConc[,(N+3)],type='l',lwd=2,xlab="Time",ylab="Profundal OM [uM algal C]",col='black')#
+plot(outConc[,1],outConc[,2],type='l',lwd=2,xlab="Time",ylab="Hypo. CH4 [uM CH4]",col='black',ylim=range(outConc[,2:(N+1)]))#
+lines(outConc[,1],outConc[,(N+1)],lty=2,lwd=2)#
+plot(1,1,cex=0,axes=FALSE,xlab="",ylab="")#
+plot(outConc[,1],outConc[,(N+4)],type='l',lwd=2,xlab="Time",ylab="Littoral sed. CH4 [uM CH4]",col='black')#
+plot(outConc[,1],outConc[,(N+5)],type='l',lwd=2,xlab="Time",ylab="Littoral OM [uM algal C]",col='black',lty=2)#
+plot(outConc[,1],outConc[,(N+6)],type='l',lwd=2,xlab="Time",ylab="Epilimnion CH4 [uM CH4]",col='black')#
+plot(outConc[nTimeSteps,c(2:(N+1),(N+6))],c(seq((zmax-deltaZ),zmix,-deltaZ),zmix/2),type='o',ylim=c(zmax,0),ylab="Depth (m)",xlab="uM CH4")
+8.08*40*12
+8.50*40*12
+pi/(180*60)
+TL=50
+RD=10
+5400*TL/1000*2*sqrt(RD^2-(0.5*RD)^2)/1000
+5400*TL/1000*2*RD*sin(0.5*RD/3*(pi/180))
+5400*TL/1000*2*RD*sin(0.5*RD/3*(180/pi))
+x=rnorm(100,0,sd=5)
+x=matrix(rnorm(50,0,sd=5),5,10)
+x
+library(vegan)
+x.pca=rda(x)
+x.pca
+summary(x.pca)
+x.sc=scores
+x.sc
+x.sc=scores(x.pca)
+x.sc
+x[1,]
+sum(x[1,]*x.sc$species)
+prcomp(x)
+?prcomp
+prcomp(x,center=TRUE,scale=TRUE,retx=FALSE)
+x.pca=prcomp(x,center=TRUE,scale=TRUE,retx=FALSE)
+summary(x.pca)
+x
+summary(summary(x.pca))
+sum(x[1,]*x.pca$rotation[,1])
+x.pca$center
+x.pca$scale
+summary(t(x.pca))
+x.pca=prcomp(t(x),center=TRUE,scale=TRUE,retx=FALSE)
+x.pca
+x.pca=princomp(t(x),center=TRUE,scale=TRUE,retx=FALSE)
+x.pca=princomp(t(x))
+summary(x.pca)
+summary(summary(x.pca))
+x.pca$loadings
+x.pca=princomp(x)
+x.pca=princomp(t(x))
+x.pca$loadings
+summary(summary(x.pca))
+x.pca$scores
+x
+x.scaled=decostand(x,method=)
+?decostand
+x.scaled=decostand(x,method="standardize")
+x.scaled
+x.dist=cor(x)
+dim(x.dist)
+x.dist=cor(t(x))
+dim(x.dist)
+x.pca=rda(x.scaled)
+summary(x.pca)
+summary(summary(x.pca))
+x.pca$scaling
+summary(x.pca)$scaling
+loadings(x.pca)
+loading(x.pca)
+?loadings
+x.pca=princomp(x)
+x.pca=princomp(x.standardized)
+x.pca=princomp(t(x.standardized))
+x.pca=princomp(t(x.scaled))
+loadings(x.pca)
+x.pca=rda(x,scale=TRUE)
+scores(x.pca,choices=1:4,display="sites",scaling=0)
+scores(x.pca,choices=1:4,display="species",scaling=0)
+loads=scores(x.pca,choices=1:4,display="species",scaling=0)
+sites=scores(x.pca,choices=1:4,display="sites",scaling=0)
+loads
+x.pca=rda(x.scaled)
+sites=scores(x.pca,choices=1:4,display="sites",scaling=0)
+loads=scores(x.pca,choices=1:4,display="species",scaling=0)
+x.scaled
+sites
+sum(x.scaled[1,]*loads[1,])
+loads[1,]
+sum(x.scaled[1,]*loads[,1])
+8198.04*12
+(102016.4-98376.48)/98376.48
+8198.04*1.0369999
+5200*.0369999
+area=c(59000,32000,8000,49000,259000)
+vol=c(142000,129000,27000,189000,1303000)
+wa=c(1122000,72000,62000,92000,320000)
+wa/area
+wa/vol
+365*5*12
+.026*12
+.291*12
+3.302*12
+.042*12
+6500/(6*24)
+6*42+15*42
+16.5/20
+.007*10000
+.007*1e6
+7000*2
+2*14000
+56000*0.8
+7000*2.5
+47476*1.02
+47476*1.03
+47476*1.025
+48500/47476
+515/12
+46.28/2.5
+191/12
+58.05/2.5
+43238.2135492/2161.91067746
+537.97+482.40+237.41
+(537.97+482.40+237.41)/6
+(537.97+482.40+237.41+1439/2)/6
+(537.97+482.40)/6
+(537.97+482.40+237.41)/6
+(537.97+482.40)/6+237.41
+(537.97+482.40)/6+237.41/2
+(537.97+482.40)/6+237.41*2.5/6
+(537.97+482.40)/6+237.41*2.55/6
+(537.97+482.40)/6+237.41*2.58/6
+(537.97+482.40)/6+237.41*2.6/6
+(537.97+482.40)/6+237.41*2.7/6
+(537.97+482.40)/6+237.41*2.8/6
+(537.97+482.40)/6+237.41*2.85/6
+(537.97+482.40)/6+237.41*3/6
+(537.97+482.40)/6+237.41*2.9/6
+(537.97+482.40)/6+237.41*2.94/6
+(537.97+482.40)/6+237.41*2.92/6
+(537.97+482.40)/6+237.41*2.85/6
+(537.97+482.40)/6+237.41*2.87/6
+(537.97+482.40)/6+237.41*2.88/6
+(537.97+482.40)/6+237.41*2.89/6
+(537.97+482.40)/6+237.41*2.9/6
+.9*30
+237.41/6
+39.56833+170.06
+sqrt(1*1000*0.1)
+369+289
+3000-658
+30/31*15*14
+30/31*20*14
+(1677/12)/(81/14)
+(1677/12)/(6/31)
+(81/14)/(6/31)
+# Load the deSolve package required for solving differential equations in R#
+libary(deSolve)#
+#
+# Create a custom function for simulating a time step#
+timestep<-function(t,N,pars){#
+	with(as.list(c(N,pars)),{#
+		dNdt=r*N*(1-N/K)#
+		return(list(dNdt))#
+	})#
+}#
+#
+# Set parameters, initial state variables, and simulation timepoints#
+p=c(r=0.5,K=100)#
+N0=c(N=2)#
+time=1:30#
+#
+# Simulate the model#
+out=ode(y=N0,times=time,func=timestep,parms=p)#
+#
+# Plot simulation#
+plot(out[,1],out[,2],type='l',lwd=2,xlab="time",ylab="N")#
+abline(h=p[2],lty=3)
+library(deSolve)
+# Create a custom function for simulating a time step#
+timestep<-function(t,N,pars){#
+	with(as.list(c(N,pars)),{#
+		dNdt=r*N*(1-N/K)#
+		return(list(dNdt))#
+	})#
+}#
+#
+# Set parameters, initial state variables, and simulation timepoints#
+p=c(r=0.5,K=100)#
+N0=c(N=2)#
+time=1:30#
+#
+# Simulate the model#
+out=ode(y=N0,times=time,func=timestep,parms=p)#
+#
+# Plot simulation#
+plot(out[,1],out[,2],type='l',lwd=2,xlab="time",ylab="N")#
+abline(h=p[2],lty=3)
+# Set parameters and vector of state variables#
+m=0.05#
+Cin=5#
+d=0.01#
+C=seq(1,10,0.1)#
+#
+# Plot dC/dt as a function of C#
+plot(C,m*(Cin-C)-d*C,type='l',lwd=2,xlab="C",ylab="dC/dt",ylim=c(-0.6,0.6))#
+abline(h=0,lty=3)#
+#
+# Add lines for varied parameters#
+lines(C,(2*m)*(Cin-C)-d*C,lwd=2,col='red') # increased dilution#
+lines(C,m*((2*Cin)-C)-d*C,lwd=2,col='green') # increased Cin#
+lines(C,m*(Cin-C)-(2*d)*C,lwd=2,col='blue') # increased decay#
+legend('bottomleft',c('base','2*m','2*Cin','2*d'),lty=1,lwd=2,col=c('black','red','green','blue'),box.lty=0)
+plot(out[,1],out[,2],type='l',lwd=2,xlab='time',ylab="C",ylim=c(0,10))#
+lines(out2[,1],out2[,2],lwd=2,col='red')#
+lines(out3[,1],out3[,2],lwd=2,col='green')#
+lines(out4[,1],out4[,2],lwd=2,col='blue')#
+legend('topright',c('C0=0, d=0.01','C0=8, d=0.01','C0=0, d=0.5','C0=8, d=0.5'),lwd=2,col=c('black','red','green','blue'),box.lty=0)
+out=ode(y=0,times=time,func=timestep,parms=p)#
+out2=ode(y=8,times=time,func=timestep,parms=p)#
+out3=ode(y=0,times=time,func=timestep,parms=p2)#
+out4=ode(y=8,times=time,func=timestep,parms=p2)#
+#
+# Plot simulation#
+plot(out[,1],out[,2],type='l',lwd=2,xlab='time',ylab="C",ylim=c(0,10))#
+lines(out2[,1],out2[,2],lwd=2,col='red')#
+lines(out3[,1],out3[,2],lwd=2,col='green')#
+lines(out4[,1],out4[,2],lwd=2,col='blue')#
+legend('topright',c('C0=0, d=0.01','C0=8, d=0.01','C0=0, d=0.5','C0=8, d=0.5'),lwd=2,col=c('black','red','green','blue'),box.lty=0)
+# Set parameters and vector of state variables#
+m=0.05#
+Cin=5#
+d=0.01#
+C=seq(1,10,0.1)#
+#
+# Plot dC/dt as a function of C#
+plot(C,m*(Cin-C)-d*C,type='l',lwd=2,xlab="C",ylab="dC/dt",ylim=c(-0.6,0.6))#
+abline(h=0,lty=3)#
+#
+# Add lines for varied parameters#
+lines(C,(2*m)*(Cin-C)-d*C,lwd=2,col='red') # increased dilution#
+lines(C,m*((2*Cin)-C)-d*C,lwd=2,col='green') # increased Cin#
+lines(C,m*(Cin-C)-(2*d)*C,lwd=2,col='blue') # increased decay#
+legend('bottomleft',c('base','2*m','2*Cin','2*d'),lty=1,lwd=2,col=c('black','red','green','blue'),box.lty=0)
+library(deSolve)#
+#
+# Create a custom function for simulating a time step#
+timestep<-function(t,C,pars){#
+	with(as.list(c(C,pars)),{#
+		dCdt=m*(Cin-C)-d*C#
+		return(list(dCdt))#
+	})#
+}#
+#
+# Set parameters, initial state variables, and simulation timepoints#
+p=c(m=0.05,Cin=5,d=0.01)#
+p2=c(m=0.05,Cin=5,d=0.5)#
+time=1:100#
+#
+# Simulate the model#
+out=ode(y=0,times=time,func=timestep,parms=p)#
+out2=ode(y=8,times=time,func=timestep,parms=p)#
+out3=ode(y=0,times=time,func=timestep,parms=p2)#
+out4=ode(y=8,times=time,func=timestep,parms=p2)#
+#
+# Plot simulation#
+plot(out[,1],out[,2],type='l',lwd=2,xlab='time',ylab="C",ylim=c(0,10))#
+lines(out2[,1],out2[,2],lwd=2,col='red')#
+lines(out3[,1],out3[,2],lwd=2,col='green')#
+lines(out4[,1],out4[,2],lwd=2,col='blue')#
+legend('topright',c('C0=0, d=0.01','C0=8, d=0.01','C0=0, d=0.5','C0=8, d=0.5'),lwd=2,col=c('black','red','green','blue'),box.lty=0)
+seq=paste(sample(c("A","T","C","G"),1000,replace=TRUE),collapse="")
+length(sq)
+length(seq)
+nchar(seq)
+seq
+out=matrix(NA,240,4)
+out[,1]=rep(c("berlin","dusseldorf","munich","dresden","stuttgart","bremen"),each=40)
+out
+out[,2]=rep(rep(c("control","fertilizer","shade","both"),each=10),6)
+out
+out[,3]=rep(1:10,24)
+out
+out[,4]=runif(0,100,240)
+out[,4]=runif(240,0,100)
+out
+out[,4]=round(runif(240,0,100))
+out
+out[sample(1:40,4),1]="Berlin"
+out[sample(41:80,3),1]="dusselldorf"
+out[sample(81:120,7),1]="munick"
+out[sample(161:200,3),1]="sTuttgar"
+out[sample(201:240,1),1]="Bremen"
+out[sample(which(out[,2]=="both"),5),2]="shade+fertilizer"
+out[sample(which(out[,2]=="fertilizer"),3),2]="nutrients"
+out[sample(which(out[,2]=="shade"),1),2]="dark"
+out[sample(which(out[,2]=="control"),8),2]="Control"
+out[sample(which(out[,3]=="1"),4),3]="one"
+out[sample(which(out[,3]=="7"),6),3]="77"
+out[sample(which(out[,3]=="10"),3),3]="11"
+out
+dim(out)
+out=out[sample(1:nrow(out),nrow(out)),]
+out
+write.table(out,"dataV5_final.txt",col.names=FALSE,row.names=FALSE,quote=FALSE,sep=" ")
