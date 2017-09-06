@@ -1,0 +1,38 @@
+---
+title: "Setting up Git for Intro. to Biocomputing Fall 2017"
+output: pdf_document
+---
+
+## If you are working on a Mac
+
+1. Open a terminal window and check whether Git is already installed by typing `which git` at the command prompt.
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If a path to git is returned, you already have Git. You are done!
+
+2. If you do not already have Git, you should get Git when you install Xcode Command Line Tools. Actually if you are using Mavericks (10.9) or newer OSX, you may have been prompted to install this when you tried Step #1 above.
+
+3. If you do not want to inxtall Xcode Command Line Tools (not sure why this would be...) or if you want a more up to date version of Git, you can download a OSX Git installer from http://git-scm.com/download/mac.
+
+## If you are working on a Windows machine and using CygWin
+
+1. You should have already installed Git when you installed CygWin. You can test this by opening CygWin and typing `Git` at the command line.
+
+2. If Git didn't install with CygWin, you can rerun the CygWin installer and add Git. 
+
+3. If you can't get Git to work in CygWin, you can download a windows-native version of Git at http://git-scm.com/download/win. This will actually install a version of bash along with Git, but that version of bash doesn't have the function `man` or the text editor `nano`. If you end up taking this option, work with the instructors to get nano installed in the git-version of bash.
+
+## If you are working on a Windows 10 machine and using the Windows 10 bash
+
+1. Open a bash terminal and type `git`. If you already have Git installed, you should see a list of arguments appear.
+
+2. If Git is not installed, you will probably be prompted to install it and be given a suggestion to use `sudo apt-get install git` to install Git. You will likely be asked to enter your password and this is the Windows password for your machine.
+
+3. Now try `git` again at the command prompt.
+
+## If you are working on a Linux machine
+
+1. Open a terminal window and check whether Git is already installed by typing `which git` at the command prompt.
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If a path to git is returned, you already have Git. You are done!
+
+2. If you do not already have Git, you should be able to install it via a binary installer. If you are on Fedora try `sudo dnf install git-all` or Ubuntu try `sudo apt-get install git-all`.

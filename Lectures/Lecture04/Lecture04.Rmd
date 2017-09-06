@@ -1,0 +1,248 @@
+---
+title: "Lecture 04 - Unix loops"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: ../mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## for loops in general
+
+**for** variable **in** set
+
+&nbsp; &nbsp; code to be executed
+
+&nbsp;
+
+- variable: a place holder used to temporarily hold each element in the set
+
+- set: the entities you want to have the code within the for loop executed for
+
+## for loops in Unix
+`for variable in set`
+
+`do`
+
+&nbsp; &nbsp; *code to be executed using* `$variable`
+
+`done`
+
+## potato example
+```{r, engine='bash', echo=TRUE, eval=TRUE}
+for number in one two
+do
+  echo $number potato
+done
+```
+
+## Executing a for loop at the Unix command line
+
+- usually the Unix command prompt is a `$`
+
+- once you've begun a for loop the prompt changes to `>`
+
+- this is only to remind you that you are in a loop
+
+- you can get out of the loop or any running command with *Ctrl-c*
+
+## Reminder again
+
+Most often the variables we will include in a set are file names, therefore you should remember...
+
+&nbsp;
+
+- NO SPACES IN FILE NAMES!!!!!
+
+&nbsp;
+
+- File extensions don't mean anything to Unix!
+
+## By the way...
+
+Did anyone else get files with name stats-stats-filename when working through tutorial?
+
+&nbsp;
+
+Why?
+
+&nbsp;
+
+How to avoid this?
+
+## More than one shell window!!!
+
+Holy cows, you can do this?
+
+&nbsp;
+
+Remember multi-processing!
+
+## Echo and debugging
+
+Why is `echo` useful for testing `for` loops?
+
+## Echo and debugging
+
+Why is `echo` useful for testing `for` loops?
+
+&nbsp;
+
+```{r, engine='bash', echo=TRUE, eval=TRUE}
+  for file in *.txt
+  do
+    echo "bash goostats $file stats-$file"
+  done
+```
+
+## What happened on a process level?
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  for file in *.txt
+  do
+    echo "bash goostats $file stats-$file"
+  done
+```
+
+\begin{figure}
+    \includegraphics[width=0.98\textwidth]{process.jpg}
+\end{figure}
+
+## for loop application
+
+**Challenge:** Use the files in `molecules/` to print each # of atoms:
+
+`cubane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `16`
+
+`ethane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `8`
+
+`methane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `5`
+
+`octane;`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `26`
+
+`pentane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `17`
+
+`propane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `11`
+
+## for loop application
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  for file in *.pdb
+  do
+    echo $file | sed 's/.pdb/: /'
+    cat $file | grep ATOM | wc -l
+  done
+```
+
+## nested for loops
+
+- As shown in the tutorial, this is useful if you have multiple directories with similar files
+
+&nbsp;
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  for dir in */
+  do
+    for file in *.txt
+    do
+      echo "$file is in $dir"
+    done
+  done
+```
+
+## looping across files or in files?
+
+## looping across files or in files?
+- hopefully clear why looping across files is useful
+
+&nbsp;
+
+- do we need to loop in files? why or why not?
+
+## looping through files
+- generally not necessary because of pipes and filters
+
+&nbsp;
+
+- to do more complex manipulations of each line in a file use `awk`, especially when a file is tabular in form
+
+## `awk` process
+
+\begin{figure}
+    \includegraphics[width=0.7\textwidth]{awk_workflow.jpg}
+\end{figure}
+
+## `awk` syntax
+
+`awk 'BEGIN{print "START"}{print $1, $4}END{print "STOP"}'`
+
+`awk` syntax made up of three components
+
+1) `BEGIN` block can be used to print field names or set option values; this is optional
+
+2) `action` block is the syntax executed for each line of the file passed to `awk`; often this takes the form of printing a subset of the available fields, but is very flexible
+
+3) `END` block can be used to print additional components at the end of the output
+
+## `awk` options
+
+- a pattern can be specified prior to the `action` block as `/pattern/`, and the `action` block will only be executed when the pattern matches a given line
+
+&nbsp;
+
+- the input field separator can be specified in the `BEGIN` block with `FS="separator"`; this defaults to whitespace
+
+&nbsp;
+
+- the output field separator can also be specified in the `BEGIN` block with `OFS="separator"`; this defaults to a space, and can also be done manually in the `action` block
+
+&nbsp;
+
+- `awk` is quite sophisticated; for example, if-else statements can be used, etc.
+
+## awk application
+
+**Challenge:** Use `awk` to print the name then date of each dragonfly sighting listed in 'insectSightings.txt` from Exercise 2. Separate the name and date on each line with a comma, and put the output in a file.
+
+## awk application
+
+**Challenge:** Use `awk` to print the name then date of each dragonfly sighting listed in 'insectSightings.txt` from Exercise 2. Separate the name and date on each line with a comma, and put the output in a file.
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  cat insectSightings.txt | grep dragonfly | 
+  awk '{print $3 "," $2} > dragonflySightings.txt
+```
+
+## function review
+`for`
+
+`$`
+
+`history`
+
+`awk`
+
+*up arrow*
+
+*Ctrl-c*
+
+*Ctrl-a*
+
+*Ctrl-e*

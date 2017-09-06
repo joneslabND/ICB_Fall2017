@@ -1,0 +1,78 @@
+---
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Quiz 04 - Unix shell scripts
+
+1\) Why would one use a shell script?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) If one had the following, poorly commented, shell script (`middle.sh`), fill in the blanks to execute the script correctly on the file `input.txt` and put 10 lines into `output.txt`:
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  # Select lines from the middle of a file.
+  cat $1 | head -n 25 | tail -n $3 > $2 
+```
+
+`$bash middle.sh` _______________   ________________   ________________
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Quiz 04 - Unix shell scripts
+
+1\) Why would one use a shell script?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) If one had the following, poorly commented, shell script (`middle.sh`), fill in the blanks to execute the script correctly on the file `input.txt` and put 10 lines into `output.txt`:
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  # Select lines from the middle of a file.
+  cat $1 | head -n 25 | tail -n $3 > $2 
+```
+
+`$bash middle.sh` _______________   ________________   ________________
+
+&nbsp;
+
+&nbsp;
+

@@ -1,0 +1,77 @@
+---
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Quiz 03 - Unix loops
+
+1\) Why is `echo` useful for testing `for` loops before implementing them?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) Write Unix syntax that uses a `for` loop to print the following:
+
+&nbsp; &nbsp; &nbsp; &nbsp; `one potato`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `two potato`
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Quiz 03 - Unix loops
+
+1\) Why is `echo` useful for testing `for` loops before implementing them?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) Write Unix syntax that uses a `for` loop to print the following:
+
+&nbsp; &nbsp; &nbsp; &nbsp; `one potato`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `two potato`
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;

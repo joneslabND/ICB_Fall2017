@@ -1,0 +1,53 @@
+---
+title: "Exercise 3 - Unix shell scripts and version control"
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+###Work with others to answer the questions below and each of you return your answers at the beginning of lecture on Monday.
+
+1. Use Git to commit each version of the shell script developed below when answering questions 2 - 4. Print your Git log for this shell script and turn it in with your answers below.
+
+2. Write a shell script that does NOT use a loop, but writes the atom number and element with the lowest value in the fifth column of each .pdb file to a text file. Once you have a shell script that works, write the contents of that script below.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+3. Revise the shell script from above so that it DOES use a loop. Once you have a shell script that works, write the contents of that script below.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+4. Revise the shell script from above so that it can take an argument from the user to determine which column from the .pdb files we are using to pick an atom. Once you have a shell script that works, write the contents of that script below.

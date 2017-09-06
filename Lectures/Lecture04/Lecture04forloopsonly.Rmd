@@ -1,0 +1,203 @@
+---
+title: "Lecture 04 - Unix loops"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: ../mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## for loops in general
+
+**for** variable **in** set
+
+&nbsp; &nbsp; code to be executed
+
+&nbsp;
+
+- variable: a place holder used to temporarily hold each element in the set
+
+- set: the entities you want to have the code within the for loop executed for
+
+## for loops in Unix
+`for variable in set`
+
+`do`
+
+&nbsp; &nbsp; *code to be executed using* `$variable`
+
+`done`
+
+## potato example
+```{r, engine='bash', echo=TRUE, eval=TRUE}
+for number in one two
+do
+  echo $number potato
+done
+```
+
+## Executing a for loop at the Unix command line
+
+- usually the Unix command prompt is a `$`
+
+- once you've begun a for loop the prompt changes to `>`
+
+- this is only to remind you that you are in a loop
+
+- you can get out of the loop or any running command with *Ctrl-c*
+
+## Reminder again
+
+Most often the variables we will include in a set are file names, therefore you should remember...
+
+&nbsp;
+
+- NO SPACES IN FILE NAMES!!!!!
+
+&nbsp;
+
+- File extensions don't mean anything to Unix!
+
+## By the way...
+
+Did anyone else get files with name stats-stats-filename when working through tutorial?
+
+&nbsp;
+
+Why?
+
+&nbsp;
+
+How to avoid this?
+
+## More than one shell window!!!
+
+Holy cows, you can do this?
+
+&nbsp;
+
+Remember multi-processing!
+
+## Echo and debugging
+
+Why is `echo` useful for testing `for` loops?
+
+## Echo and debugging
+
+Why is `echo` useful for testing `for` loops?
+
+&nbsp;
+
+```{r, engine='bash', echo=TRUE, eval=TRUE}
+  for file in *.txt
+  do
+    echo "bash goostats $file stats-$file"
+  done
+```
+
+## What happened on a process level?
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  for file in *.txt
+  do
+    echo "bash goostats $file stats-$file"
+  done
+```
+
+\begin{figure}
+    \includegraphics[width=0.98\textwidth]{process.jpg}
+\end{figure}
+
+## for loop application
+
+**Challenge:** Use the files in `molecules/` to print each # of atoms:
+
+`cubane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `16`
+
+`ethane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `8`
+
+`methane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `5`
+
+`octane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `26`
+
+`pentane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `17`
+
+`propane:`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `11`
+
+## for loop application
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  for file in *.pdb
+  do
+    echo $file | sed 's/.pdb/: /'
+    cat $file | grep ATOM | wc -l
+  done
+```
+
+## storing for loop output in a file
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  for file in *.pdb
+  do
+    echo $file | sed 's/.pdb/: /' > output.txt
+    cat $file | grep ATOM | wc -l > output.txt
+  done
+```
+
+**VS**
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  for file in *.pdb
+  do
+    echo $file | sed 's/.pdb/: /' >> output.txt
+    cat $file | grep ATOM | wc -l >> output.txt
+  done
+```
+
+## nested for loops
+
+- As shown in the tutorial, this is useful if you have multiple directories with similar files
+
+&nbsp;
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  for dir in */
+  do
+    for file in *.txt
+    do
+      echo "$file is in $dir"
+    done
+  done
+```
+
+## function review
+`for`
+
+`$`
+
+`history`
+
+*up arrow*
+
+*Ctrl-c*
+
+*Ctrl-a*
+
+*Ctrl-e*
