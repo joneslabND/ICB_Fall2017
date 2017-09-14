@@ -163,3 +163,59 @@ Below is a running list of Unix commands and common arguments as used in Intro t
 **`history`** -- return a history of commands entered at the prompt
 
 - `history` does not expect any arguments
+
+**`chmod`** -- change files modes or access control lists
+
+- `chmod` expects arguments of the format *who* *op* *permission* `filename`
+
+    + *who* comes first: user (u), group (g), other (o), or all (a)
+
+    + *op* comes next: this indicates if we are adding (+) or removing (-) permissions
+    
+    + *permission* is last: read (r), write (w), and execute (x) are the most common
+
+\newpage
+
+## Common Git commands
+
+**`git config`** -- get and set repository or global options
+
+- `--global`: for writing to the ~/.gitconfig file; these will apply to all uses of Git
+
+- `--local`: for writing to the .git/config file and setting options for a specific repository
+
+- `-e`: will open a specified config file (global or local) in a text editor and allow you to manually edit options
+
+- `user.name`: specify user name in config file
+
+- `user.email`: specify user email in config file
+
+- `color.ui`: specify coloring option in config file
+
+- `core.editor`: specify default text editor to be used
+
+**`git init`** -- create an empty Git repository or reinitialize an existing one
+
+- `git init` can take a directory as an argument, but by default it uses `.`
+
+**`git add`** -- add file contents to the index or "staging area"
+
+- `git add` expects at least one file name as an argument
+
+- `-A`: add all directory contents to the staging area
+
+**`git commit`** -- Record changes in files to the repository
+
+- `-m`: use the quoted string that follows as the commit message
+
+**`git status`** -- show the working tree (staging area) status
+
+- `-s`: give the output in a short format
+
+**`git log`** -- show the commit log
+
+- arguments limiting the commit list returned from the log are numerous, including filtering by author, date range, regular expression, etc.; see `git log --help` for details.
+
+**`git checkout`** -- switch branches or restore working tree files
+
+**`git revert`** -- revert some existing commits

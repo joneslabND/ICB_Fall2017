@@ -1,5 +1,5 @@
 ---
-title: "Lecture 05 - Unix shell scripts"
+title: "Lecture 06 - Git discussion, review, and extension"
 output: 
   beamer_presentation:
     fig_caption: false
@@ -12,131 +12,23 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## why write a shell script?
+## some logistics
 
-## why write a shell script?
+- quizzes were worth too much and so I'm fixing that by increasing the weight on the group project
 
-- repeat tasks easily
+- messed up good & bads last week, but will do it on this Wednesday; put names on them!
 
-- reproducible and documented (comments!!!!)
+- exercises due the following tutorial to allow for help at office hours
 
-- modularize your analysis processes
+- orthogonal design to a point...
 
-## arguments to a shell script
+## Why use Git?
 
-- `$1`, `$2`, `$3`, etc.
+## How does Git work?
 
-&nbsp;
-
-- `$@` - useful with loops in a shell script!
-
-## shell scripts in an 'orthoganal' manner
-
-- remember the power of Unix is it's modularity
-
-&nbsp;
-
-- BUILD SCRIPTS TO READ FROM `stdin` AND WRITE TO `stdout`
-
-## convert a SWC shell script to use `stdin` and `stdout`
-
-```{r, engine='bash', echo=TRUE, eval=FALSE}
-  # Select lines from the middle of a file.
-  # Usage: bash middle.sh filename end_line num_lines
-  head -n "$2" "$1" | tail -n "$3"
-```
-
-`bash middle.sh pentane.pdb 15 5`
-
-## convert a SWC shell script to use `stdin` and `stdout`
-
-```{r, engine='bash', echo=TRUE, eval=FALSE}
-  # Select lines from the middle of a file.
-  # Usage: middle2.sh end_line num_lines
-  head -n "$1" | tail -n "$2"
-```
-
-`cat pentane.pdb | bash middle2.sh 15 5`
-
-## making scripts behave even more like a function
-
-To behave like other basic functions a shell script needs:
-
-- a 'shebang' as the first line
-
-    + `#!/path/to/interpretor`
-
-    + this tells the shell what to use to run the text in the script
-
-&nbsp;
-
-- the script file must be executable by the user
-
-## file permissions
-
-if we use `ls -l *.sh` to look at our shell scripts, we can see read, write, and execute permissions
-
-- usually the first character indicates files vs. directories
-
-&nbsp;
-
-- the next nine characters indicate the presence or absence of read (r), write (w), and execute (x) permissions for the "owner", "group", and "other" users
-
-## changing file permissions
-
-- the function `chmod` can be used to change permissions
-
-&nbsp;
-
-- to add executable permission for the owner try: 
-`chmod u+x filename`
-
-    + *who* comes first: user (u), group (g), other (o), or all (a)
-
-    + "op" comes next: this indicates if we are adding (+) or removing (-) permissions
-    
-    + "permission" is last: read (r), write (w), and execute (x) are the most common
-
-## convert a SWC shell script to use `stdin` and `stdout`
-
-```{r, engine='bash', echo=TRUE, eval=FALSE}
-  #!/usr/bin/env bash
-  
-  # Select lines from the middle of a file.
-  # Usage: middle3.sh end_line num_lines
-  head -n "$1" | tail -n "$2"
-```
-
-`chmod u+x middle3.sh`
-
-`cat pentane.pdb | ./middle3.sh 15 5`
-
-## convert a SWC shell script to use `stdin` and `stdout`
-
-`bash middle.sh pentane.pdb 15 5`
-
-&nbsp;
-
-`cat pentane.pdb | bash middle2.sh 15 5`
-
-&nbsp;
-
-`cat pentane.pdb | ./middle3.sh 15 5`
-
-## version control and Git
-
-A computational best practice that solves this problem, among others...
-
-\begin{figure}
-  \includegraphics[width=0.5\textwidth]{phd101212s.jpg}
-\end{figure}
-
-
-## version control and Git
+## How does Git work?
 
 - A set of functions that allow tracking of progress in a project and facilitate collaboration.
-
-- Becoming the gold standard in biocomputation-focused research.
 
 - Sets up a hidden directory that stores information about changes in a working directory.
 
@@ -147,12 +39,154 @@ A computational best practice that solves this problem, among others...
   git commit -m "custom commit message"
 ```
 
-- Consult documentation ('Git_Setup.pdf') available on Sakai for installation instructions.
+## Exercise 3 as a review
 
-## function review
-
-`chmod`
+1. Use Git to commit each version of the shell script developed below when answering questions 2 - 4. Print your Git log for this shell script and turn it in with your answers below.
 
 &nbsp;
 
-`#!/path/to/interpretor`
+2. Write a shell script that does NOT use a loop, but writes the atom number and element with the lowest value in the fifth column of each .pdb file to a text file. Once you have a shell script that works, write the contents of that script below.
+
+## Exercise 3 as a review
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  cd data-shell/molecules
+  
+  git init
+```
+
+## Exercise 3 as a review
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  #!/usr/bin/env bash
+  
+  # a script for pulling the atom with the minimum value in column 5 from each of six .pdb files
+  # usage ./pdbScript.sh
+  
+  cat cubane.pdb | grep ATOM | sort -n -k 5 | head -n 1 | 
+  tr -s " " | cut -d " " -f 3,5 >> results.txt
+  
+  ...
+  
+  cat propane.pdb | grep ATOM | sort -n -k 5 | head -n 1 | 
+  tr -s " " | cut -d " " -f 3,5 >> results.txt
+```
+
+## Exercise 3 as a review
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  git add -A
+  
+  git commit -m "added shell script without a for loop"
+```
+
+## Exercise 3 as a review
+
+3. Revise the shell script from above so that it DOES use a loop. Once you have a shell script that works, write the contents of that script below.
+
+## Exercise 3 as a review
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  #!/usr/bin/env bash
+  
+  # a script for pulling the atom with the minimum value in column 5 from each of six .pdb files
+  # usage ./pdbScript.sh
+  
+  for file in "$@"
+  do
+    cat $file | grep ATOM | sort -n -k 5 | head -n 1 | 
+    tr -s " " | cut -d " " -f 3,5 >> results.txt
+  done
+```
+
+## Exercise 3 as a review
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  git add -A
+  
+  git commit -m "added a for loop to pdbScript.sh"
+```
+## Exercise 3 as a review
+
+4. Revise the shell script from above so that it can take an argument from the user to determine which column from the .pdb files we are using to pick an atom. Once you have a shell script that works, write the contents of that script below.
+
+## Exercise 3 as a review
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  git log
+  
+  git diff HEAD 'hash from previous commit'
+  
+  git checkout 'hash from previous commit'
+  -- pdbScript.sh
+```
+
+## Exercise 3 as a review
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  #!/usr/bin/env bash
+  
+  # a script for pulling the atom with the minimum value in column 5 from each of six .pdb files
+  # usage ./pdbScript.sh column_number
+  
+   cat cubane.pdb | grep ATOM | sort -n -k $1 | head -n 1 | 
+  tr -s " " | cut -d " " -f 3,5 >> results.txt
+  
+  ...
+  
+  cat propane.pdb | grep ATOM | sort -n -k $1 | head -n 1 | 
+  tr -s " " | cut -d " " -f 3,5 >> results.txt
+```
+
+## Exercise 3 as a review
+
+```{r, engine='bash', echo=TRUE, eval=FALSE}
+  git add -A
+  
+  git commit -m "added argument to pbsScript.sh 
+  for selecting the column number but got rid of 
+  the for loop"
+```
+
+
+## What is the connection between Git and GitHub?
+
+## What is the connection between Git and GitHub?
+
+\begin{figure}
+  \includegraphics[width=0.85\textwidth]{GitHub.jpg}
+\end{figure}
+
+## Sign up for GitHub...
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{GitHubSignup.jpg}
+\end{figure}
+
+## Sign up for GitHub...
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{GitHubLandingpage.jpg}
+\end{figure}
+
+## Sign up for GitHub...
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{GitHubProfile.jpg}
+\end{figure}
+
+## function review
+
+`git config`
+
+`git init`
+
+`git add`
+
+`git commit`
+
+`git status`
+
+`git log`
+
+`git checkout`
