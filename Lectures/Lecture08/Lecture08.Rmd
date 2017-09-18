@@ -1,5 +1,5 @@
 ---
-title: "Lecture 07 - From Git to GitHub"
+title: "Lecture 08 - The why and how of scripting"
 output: 
   beamer_presentation:
     fig_caption: false
@@ -12,216 +12,249 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## .gitignore
+## What's scripting?
 
-- good for ignoring file system files or data files (privacy and storage space, especially on GitHub)
-
-&nbsp;
-
-- if you previously tracked some files and want to add them to your `.gitignore` file, you'll have to make a commit with those files absent from the directory and then add those files to the `.gitignore` file. How would you accomplish this?
+- automating a computational process using a programming language
 
 &nbsp;
 
-- `git status --ignored` returns files that are currently ignored, but doesn't show hidden files
+- often this occurs via a `read-eval-print` loop (REPL)
 
-## git checkout
-
-- useful for reverting files to a previous version: `git checkout <commit hash> <file name(s)>`
-
-&nbsp;
-
-- If you forget to specify a file when you do this, Git will tell you that “You are in ‘detached HEAD’ state.” In this state, you shouldn’t make any changes. You can fix this by reattaching your head using `git checkout master`.
-
-&nbsp;
-
-- One key point, remember to use the hash for the commit before the change we are trying to get rid of, not the hash from the commit that implemented the change we want to get rid of...
-
-## branching and merging
-
-`git status`
-
-&nbsp;
-
-What branch are we on?
-
-## branching and merging
-
-`git status`
-
-&nbsp;
-
-What branch are we on?
-
-&nbsp;
-
-Think of a branch as an experimental version of the repo that we may or may not decide to keep.
-
-## branching and merging
-
-To create a branch:
-
-&nbsp;
-
-`git branch branch_name`
-
-`git checkout branch_name`
-
-&nbsp;
-
-OR
-
-&nbsp;
-
-`git checkout -b branch_name`
-
-## branching and merging
-
-To permanently keep the changes from a branch we merge them back into the `master` branch:
-
-&nbsp;
-
-`git checkout master`
-
-`git merge <branch_name>`
-
-## branching and merging
-
-We can visualize a series of commits and branches as a tree diagram.
-
-\begin{figure}
-  \includegraphics[width=0.75\textwidth]{basicTree.jpg}
-\end{figure}
-
-## branching and merging
-
-Draw a Git tree diagram at each timepoint of the following scenario.
-
-1. A repo was initiated and four commits were made to it.
-
-2. A branch named "issue001" was created and you make one commit on this branch.
-
-3. Your advisor calls you and says they need you to fix a bug in the code you are developing. So you return to the `master` branch, create a branch called "quickFix", fix the error and commit a change.
-
-4. You double check the fix works, and then merge the `quickFix` branch with `master`.
-
-5. You go back to `issue001` and continue working, during which time you make 3 commits. The new code seems to work well and you merge `issue001` into `master`.
-
-## What is the connection between Git and GitHub?
-
-\begin{figure}
-  \includegraphics[width=0.85\textwidth]{GitHub.jpg}
-\end{figure}
-
-## GitHub repos
-
-\begin{figure}
-  \includegraphics[width=\textwidth]{GitHubProfile.jpg}
-\end{figure}
-
-## Creating a GitHub repo
-
-See SWC - Version Control with Git: Remotes in GitHub
-
-- Always need to create the repo with GitHub web interface
-
-- Once created one can do more or less work in Git (local)
-
-    + create locally and `push`
+    + the *read* function accepts and parses a submitted code expression
     
-    + create on GitHub and `clone`
-
-## Creating a GitHub repo
-
-The key goal is to have the same content in a local Git repo and in the GitHub repo
-
-- create locally and `push`:
-
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `git remote add origin <url for GitHub repo>`
-
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `git push -u origin master`
-
-- create on GitHub and `clone`:
-
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `git clone <url for GitHub repo>`
+    + the *eval* function identifies the called functions and implements them with the supplied arguments
+    
+    + the *print* function passes what is returned from the function calls to the user
+    
+    + the system than returns to the *read* state creating a loop
 
 &nbsp;
 
-**simple with own GitHub repo, but collaborator needs permission
+- this process can occur at a prompt, but can also be implemented on a text file containing code, which we often refer to as a **script**
+    
+## Why script?
 
+## Why script?
 
+- efficiency
 
-## push vs. pull; origin
+- reproducibility
 
-- talking back and forth with a GitHub repository
+- get a job
 
-- origin is a nickname for remote repository linked to the local repo
+- impress your family and friends
 
-`git push origin master` - sends local content to the associated GitHub repo
+- preserve your sanity
 
-&nbsp;
+## Scripting is the future - Readings...
 
-`git pull origin master` - brings GitHub content to the local Git repo
+- Big data is everywhere
 
-&nbsp;
+- Transition between 2006 and 2016 in needs/priorities
 
-- how does Git know what GitHub repo is associated (i.e. what `origin` is)?
+- Needs for training not being met
 
-## conflicts
+- Training is perceived to be a requirement for future success
 
-- can happen when alone, but very likely when collaborating on same repo
+## Characteristics of programming languages
 
-- occurs when parallel changes have been made to the same lines of code
+- portability
 
-- shows sophistication of Git and GitHub
+- computational efficiency
 
-- these conflicts must be manually resolved before successfully pushing code, pulling code, or merging branches
+- ease of use
 
-## issues
+- specificity
 
-- built in structure for development and fixing bugs
+## Compiled vs. interpreted languages
 
-&nbsp;
-
-- on GitHub repo page
-
-## forking
-
-- creating your own version of someone else's GitHub repo
-
-- doesn't require permission
-
-- initial forking occurs on GitHub web interfact
-
-- need to link your local Git repository to original GitHub repo:
+- **Compiled** - source code is translated to computer-understandable instructions once prior to its use. The compiling process is specific to a given computer based on its hardware, operating system, etc. Examples include C, C++, and sometimes Java.
 
 &nbsp;
 
-after forking and pulling the repo:
+&nbsp;
 
-`git remote add upstream url_for_repo_forked_from`
+- **Interpreted** - human-readable code is read and evaluated by an interpreter each time it is run. However, the interpreter itself is a compiled program. Examples include Python, R, and Perl.
 
-`git fetch upstream`
+## Characteristics of programming languages
 
-## pull requests
+- portability
 
-- when you have made changes to your GitHub repo that you think the original owner would like
+- computational efficiency
+
+- ease of use
+
+- specificity
+
+## Compiled vs. interpreted languages
+
+What is `bash`?
+
+## Scripting languages
+
+What are some scripting languages you've heard of before?
 
 &nbsp;
 
-- must be approved by original repo owner/user
+&nbsp;
 
-## function review
+Where do they fall in the programming language space?
 
-`git checkout`
+## When to use `bash` and when to use `R`/`Python`?
 
-`git merge`
+I find there's no reason to use Bash/Shell if you have Ruby/Python installed ... Why do people use Bash nowadays? Because it's a terrible, hard-to-break habit. 
 
-`git pull`
+&nbsp;
 
-`git push`
+&nbsp;
 
-`git clone`
+Given a problem that both can handle, you'll want to use the one you're most comfortable with. Ultimately, there are a lot of small details, and only experience can teach you to see them.
 
-`git remote`
+## When to use `bash` and when to use `R`/`Python`?
 
-`git fetch`
+I use **bash** when my primary focus is on **file handling**. This could include moving, copying, and renaming files.
+
+I use Perl and **python** when my primary focus is on reading data from files, **processing that data** in some way, and writing output to files. 
+
+If I find myself using the subprocess module too extensively, I consider writing the script in bash. On the other hand, I sometimes start adding so much functionality to a bash script that eventually it makes more sense to rewrite it in python rather than deal with bash's limited (by comparison) support for variable scoping, functions, data structures, etc.
+
+## How this section of class will work...
+
+As I said the first day or two of class we are going to focus on Python *or* R.
+
+Lectures will focus on theory of both and tutorials will focus on code-specific application
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  &nbsp;
+  
+  **In general R code will appear in the lower left for examples.**
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  &nbsp;
+  
+  **Python code will be here in the lower right.**
+  
+  \endcol
+\endcols
+
+
+## Python vs. R
+
+The differences between these two languages, other than their syntax, have diminished dramatically over the last 2-5 years. Both can run in *interactive* or *batch* mode, and have a broad base of packages for augmenting their functionality.
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  - `R` evolved in the early 1990's from `S`, which was developed at AT&T's Bell Labs
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  - Python was developed by Guido von Rossum in the early 1990's as a "hobby project"
+  
+  \endcol
+\endcols
+
+
+## Python vs. R
+The "major" remaining differences include:
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  - `R` relies heavily on packages for added functionality and therefore hundreds or thousands of packages exist
+  
+  - `R` grew out of the statistics arena and therefore still has better abilities for complex statistical modeling and math, especially in the base package
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  - `Python` has more human readable code
+  
+  - `Python` is faster
+  
+  \endcol
+\endcols
+
+## Open source and a community of contributors
+
+Both R and Python have broad user communities that develop packages and contribute to user forums.
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  - R uses the Comprehensive R Archive Network (CRAN)
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  - Python uses the Python Package Index (PyPI)
+  
+  \endcol
+\endcols
+
+## Installation
+
+Both languages are fairly easy to install thanks to development projects that streamline the process of managing packages and working in an interactive manner.
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  - Rstudio is a relatively new interactive development environment (IDE) for `R`
+  
+  - It allows for package management and adds other functionality like interacting with `Git` and `Github`
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  - An interactive version of `Python` (`IPython`) operates similarily to `R`
+  
+  - Anaconda is a "Python Data Science Platform" that manages packages and provides an easy to install version of `Python` and `IPython`
+  
+  - Use version 2.7!!!
+  
+  \endcol
+\endcols
+
+## Topics to be covered
+
+- variables, input/output, data structures
+
+- documentation: markdown and knitr
+
+- Control flow
+    + making decisions
+    
+    + looping
+    
+- Regular expressions and string manipulation
+
+- Package repositories
+
+- Making graphics
+
+- Applications

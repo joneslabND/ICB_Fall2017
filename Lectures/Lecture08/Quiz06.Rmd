@@ -8,41 +8,9 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Quiz 05 - Version control and Git
+## Quiz 06 - Why scripting?
 
-1\) Why would one use version control?
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-2\) Place the following Git commands in order necessary to create a repository and store a version of the existing file called `data.txt` in that repository: `git add data.txt`, `git commit -m "initial commit"`, `git init`.
-
-1)
-
-&nbsp;
-
-2)
-
-&nbsp;
-
-3)
-
-&nbsp;
-
-## Quiz 05 - Version control and Git
-
-1\) Why would one use version control?
+1\) Which reading was more convincing of the need for biocomputational training and why?
 
 &nbsp;
 
@@ -58,14 +26,53 @@ knitr::opts_chunk$set(echo = TRUE)
 
 &nbsp;
 
-2\) Place the following Git commands in order necessary to create a repository and store a version of the existing file called `data.txt` in that repository: `git add data.txt`, `git commit -m "initial commit"`, `git init`.
-
-1)
+&nbsp;
 
 &nbsp;
 
-2)
+&nbsp;
 
 &nbsp;
 
-3)
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Quiz 06 - Why scripting?
+
+1\) Which reading was more convincing of the need for biocomputational training and why?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
