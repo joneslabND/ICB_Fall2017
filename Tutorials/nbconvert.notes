@@ -1,0 +1,15 @@
+#convert .ipynb file to .tex file
+jupyter nbconvert filename.ipynb --to=latex 
+
+#edit aspects of .tex file
+-add * before { on section and subsection labels to avoid numbering
+-not sure how to fix indenting...
+-not sure how to fix the title...
+
+#convert .tex file to pdf
+pdflatex filename.tex
+
+# clean up
+rm *.out
+rm *.log
+rm *.aux

@@ -1,0 +1,20 @@
+---
+title: "Knit Py"
+author: "Stuart"
+output:
+        pdf
+---
+
+###This is a test of knitpy
+
+I'm not sure this is going to work very well, but we'll see
+
+```{python}
+    import numpy
+    
+    x=[1,2,3,4]
+    
+    y=numpy.mean(x)
+    
+    print(y)
+```

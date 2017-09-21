@@ -1,0 +1,68 @@
+---
+title: "Lecture 09 - Variables, functions, data structures, and input/output"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: ../mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Indexing from data structures
+
+**Indexing** is a means by which we can access a subset of an array, matrix, vector, etc.
+
+We can use square brackets `[]` in both languages to subset many data structures.
+
+Always remember: rows before columns
+
+A major difference between the two languages is the initial index. 
+  
+    + `Python` starts with zero
+    
+    + `R` starts with one
+
+We can also index multiple rows or columns using `:`
+
+
+## Indexing unordered structures
+
+Lists in `R` and dictionaries in `Python` are unorderd and must be indexed by their *keys*.
+
+&nbsp;
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  To get an element in an `R` list, use dollarsign notation:
+  
+  `list$name1`
+  
+  &nbsp;
+  
+  `R` lists actually aren't unordered and so you can also use double brackets:
+  
+  `list[[1]]`
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  To get an element in a `Python` dictionary we use square brackets:
+  
+  &nbsp;
+  
+  `dict = {'key':'value'}`
+  
+  &nbsp;
+  
+  `dict['key']`
+  
+  \endcol
+\endcols
+
+
+

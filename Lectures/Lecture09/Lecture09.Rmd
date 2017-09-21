@@ -1,0 +1,325 @@
+---
+title: "Lecture 09 - Variables, functions, data structures, and input/output"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: ../mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+## Scripting and commenting
+
+Remember we are *scripting* here, so we should be working in scripts!
+
+&nbsp;
+
+Scripts also allow us to do a lot of commenting to help our collaborators and our future selves.
+
+## Building blocks of a scripting language
+
+- variables
+    
+- functions
+
+&nbsp;
+
+&nbsp;
+
+What is a variable?
+
+What is a function? What are the two things you need to know to use a function?
+
+## What's a variable?
+
+- a name that holds a value
+
+- attributes of a variable:
+
+    + name
+    
+    + mode or type
+    
+    + value
+    
+    + scope
+
+&nbsp;
+
+- had variables in shell too
+
+- in fact Exercise 4 uses some variables. Anyone struggling with that?
+
+## variable modes or types
+
+Our definition of a variable is very flexible, but a scripting language has to define a base set of variable types or modes.
+
+&nbsp;
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  Data modes in R:
+  
+  - numeric
+  
+  - complex
+  
+  - character
+  
+  - logical
+  
+  - factors
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  Data types in Python:
+  
+  - integer
+  
+  - float
+  
+  - complex
+  
+  - string
+  
+  - boolean
+  
+  \endcol
+\endcols
+
+
+## Assignment of a value to a variable
+
+Assignment of a value to a variable can be accomplished with `=` in both `Python` and `R`. Some like to use `<-` in `R`, but they both work. 
+
+The simplest example of this is assigning a single numeric or character value to a variable name, but the value returned from a function call can also be assigned to a variable.
+
+&nbsp;
+
+\begincols
+  \begincol{.35\textwidth}
+  
+ `x=5`
+ 
+ `name<-"Stuart"`
+ 
+ `curTime=date()`
+  
+  \endcol
+  \begincol{.65\textwidth}
+  
+ `x=5`
+ 
+ `name="Stuart"`
+ 
+ &nbsp;
+ 
+ `from datetime import datetime`
+ 
+ `curTime=datetime.now().
+ strftime('%Y-%m-%d %H:%M:%S')`
+  
+  \endcol
+\endcols
+
+## Calling a function
+
+- still have function names and arguments
+
+- back to learning syntax...
+
+&nbsp;
+
+Where do we learn about functions?
+
+## Calling a function
+
+- still have function names and arguments
+
+- back to learning syntax...
+
+&nbsp;
+
+Where do we learn about functions?
+
+&nbsp;
+
+\begincols
+  \begincol{.48\textwidth}
+  
+ `?function_name`
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+ `help(function_name)`
+  
+  \endcol
+\endcols
+
+## Calling a function
+
+In unix we would call a function using it's name with arugment following separated by spaces. This is a bit different in `R` and `Python`.
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  `R` functions are called with their name followed by an open and close parenthese. Arguments are passed within the parentheses and separated by commas.
+  
+  &nbsp;
+  
+  `x = c(1,2,3,4)`
+  
+  `y=mean(x,na.rm=TRUE)`
+  
+  \endcol
+  \begincol{.48\textwidth}
+
+  Base functions are called as `variable.function()` with additional arguments separated by commas within the parentheses. Other functions are called with the variable passed as an argument.
+  
+  &nbsp;
+  
+  `x = [1,2,3]`
+  
+  `x.append(4)`
+  
+  `import numpy`
+  
+  `y=numpy.mean(x)`
+
+  \endcol
+\endcols
+
+## Data structures
+
+We usually want to work with more than one numeric or character value at a time and so a variety of data structures exist to hold multiple values in a single variable.
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  - vector: ordered 1D, contains single data mode
+  
+  - matrix/array: 2D/nD, contains single data mode
+  
+  - list: sequence, contains multiple data modes and other data structures
+  
+  - dataframe: 2D, hybrid of list and matrix
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  - list: ordered, mutable; `[]`
+  
+  - tuple: ordered, immutable; `()` 
+  
+  - dictionary: unordered key-value pairs, mutable; `{}`
+  
+  - set: unordered, immutable, only unique entries
+  
+  - matrix and arrays in `Numpy` (only single data type here)
+  
+  \endcol
+\endcols
+
+## Reading and writing files
+
+The power of scripting languages is their ability to process large amounts of data, so it makes sense that we can access the contents of text files.
+
+&nbsp;
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  To read tabular data:
+  
+  `read.table(file='filename'`
+  `,sep=',',header=TRUE)`
+  
+  &nbsp;
+  
+  To read text data:
+  
+  `scan(file='filename')`
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  To read tabular data:
+  
+  `import numpy`
+  
+  `numpy.loadtxt(fname=`
+  `'filename',delimiter=',')`
+  
+  &nbsp;
+  
+  To read text data:
+  
+  `with open(`filename`) as f:`
+  
+  &nbsp; &nbsp; `content = f.readlines()`
+  
+  \endcol
+\endcols
+
+## Indexing from data structures
+
+**Indexing** is a means by which we can access a subset of an array, matrix, vector, etc.
+
+We can use square brackets `[]` in both languages to subset many data structures.
+
+Always remember: rows before columns
+
+A major difference between the two languages is the initial index. 
+  
+    + `Python` starts with zero
+    
+    + `R` starts with one
+
+We can also index multiple rows or columns using `:`
+
+
+## Indexing unordered structures
+
+Lists in `R` and dictionaries in `Python` are unorderd and must be indexed by their *keys*.
+
+&nbsp;
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  To get an element in an `R` list, use dollarsign notation:
+  
+  `list$name1`
+  
+  &nbsp;
+  
+  `R` lists actually aren't unordered and so you can also use double brackets:
+  
+  `list[[1]]`
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  To get an element in a `Python` dictionary we use square brackets:
+  
+  &nbsp;
+  
+  `dict = {'key':'value'}`
+  
+  &nbsp;
+  
+  `dict['key']`
+  
+  \endcol
+\endcols
+
+
+
