@@ -10,7 +10,22 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Quiz 07 - Making choices
 
-1\) Which reading was more convincing of the need for biocomputational training and why?
+1\) Given the equivalent Python or R code below, fill in the missing information on the diagram below.
+
+```{python, eval=FALSE}
+if num > 10:
+  print('high')
+else:
+  print('low')
+```
+
+```{r, eval=FALSE}
+if(num>10){
+  print('high')
+}else{
+  print('low')
+}
+```
 
 &nbsp;
 
@@ -42,37 +57,26 @@ knitr::opts_chunk$set(echo = TRUE)
 
 &nbsp;
 
-&nbsp;
+2\) Given the equivalent Python or R code below, what will be returned to the console?
 
-## Quiz 06 - Why scripting?
+```{python, eval=FALSE}
+x=0
+if x < 0:
+  print('negative')
+elif x > 0:
+  print('positive')
+else:
+  print('zero')
+```
 
-1\) Which reading was more convincing of the need for biocomputational training and why?
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
+```{r, eval=FALSE}
+x=0
+if(x<0){
+  print('negative')
+}else if(x>0){
+  print('positive')
+}else{
+  print('zero')
+}
+```
 

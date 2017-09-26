@@ -1,0 +1,62 @@
+---
+title: "Lecture 11 - More practice with control structures"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: ../mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Practice with control structures
+
+**Challenge**: Use  a `for loop` and `if-else` statement to calculate the sum of wages for males and females in `wages.csv`.
+
+&nbsp;
+
+&nbsp;
+
+## Quick review on reading files
+
+**What are commands we've used to read data into `Python` or `R`?**
+
+## Quick review on reading files
+
+**What are ways we've used to read data into `Python` or `R`?**
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  &nbsp;
+  
+  &nbsp;
+  
+  `read.table()` loads tabular data as dataframe
+  
+  &nbsp;
+  
+  `scan()` loads data as a vector; each line is an element
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  `numpy.loadtxt()` works for tabular data of the same type
+  
+  &nbsp;
+  
+  `pandas.read_csv()` loads tabular data as dataframe
+  
+  &nbsp;
+  
+  we can also directly open a file and access its contents with `open()`
+  
+  \endcol
+\endcols
+
+## **Challenge**
+
+See handouts for additional practice problems

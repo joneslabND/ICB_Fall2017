@@ -1,0 +1,43 @@
+---
+title: "Lecture 10 - Making choices and some practice"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: ../mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Simple rough plotting is useful when starting with new data
+
+&nbsp;
+
+You only need to know the specific syntax for your language!
+
+&nbsp;
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  base package plotting in R is helpful
+  
+  `plot()`
+  
+  `boxplot()`
+  
+  `barplot()`
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  pandas has some very simple plotting functions based on matplotlib
+  
+  seaborn seems useful too; need to learn functions, but straightforward once you know them
+  
+  \endcol
+\endcols
+

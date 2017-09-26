@@ -1,0 +1,9 @@
+---
+title: "Lecture 11 - Extra practice in R"
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+1. Write a file containing the unique gender-yearsExperience combinations contained in the file "wages.csv". The file you create should contain gender in the first column and yearsExperience in a second column with a space separating the two columns. The rows should be sorted first by gender and then by yearsExperience, but remember to keep the pairings in a given row intact. Don't worry about column names in the output file. **Hint:** `order()` is likely a useful function for sorting two-dimensional data structures in `R`. Also, the opposite of `read.table()` is `write.table()`.
+

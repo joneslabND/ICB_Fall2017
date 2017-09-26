@@ -146,8 +146,6 @@ Both languages follow the general syntax:
   
   &nbsp; &nbsp; `print("x isn't 1 or 2")`
   
-  &nbsp;
-  
   \endcol
 \endcols
 
@@ -203,8 +201,6 @@ You only need to know the specific syntax for your language!
   
   &nbsp; &nbsp; `do some stuff`
   
-  &nbsp;
-  
   \endcol
 \endcols
 
@@ -225,3 +221,33 @@ You only need to know the specific syntax for your language!
 &nbsp;
 
 **Challenge**: Adjust your code to use the `for loop` and `if-else` statement to calculate the sum and the mean of wages for males and females in `wages.csv`.
+
+## Vectorized functions mean less looping for you!
+
+In some languages, like `c` and `fortran`, for loops are the only way to apply transformations or functions to elements of a list. For example, to double the value held in each element of a list/vector one would need (in pseudo-code):
+
+&nbsp; &nbsp; `for i in sequence(1 to length of vector)`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `vector[i]=vector[i]*2`
+
+&nbsp;
+
+Lucky for us many scripting languages, including `Python` and `R`, do not require a for loop in this setting. Rather they can use **vectorized functions**. This means that functions can be applied to each element of a vector/list or directly to a vector/list.
+
+&nbsp;
+
+## Vectorized functions mean less looping for you!
+
+In some languages, like `c` and `fortran`, for loops are the only way to apply transformations or functions to elements of a list. For example, to double the value held in each element of a list/vector one would need (in pseudo-code):
+
+&nbsp; &nbsp; `for i in sequence(1 to length of vector)`
+
+&nbsp; &nbsp; &nbsp; &nbsp; `vector[i]=vector[i]*2`
+
+&nbsp;
+
+Lucky for us many scripting languages, including `Python` and `R`, do not require a for loop in this setting. Rather they can use **vectorized functions**. This means that functions can be applied to each element of a vector/list or directly to a vector/list.
+
+&nbsp;
+
+**Challenge**: Revise your code from the previous challenge to avoid using loops or if-else statements.

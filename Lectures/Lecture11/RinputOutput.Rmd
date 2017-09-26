@@ -1,0 +1,140 @@
+---
+title: "R Input/Output"
+output: pdf_document
+---
+
+# Input
+
+`R` is able to accept input from the keyboard or from files.
+
+## 1. Keyboard input
+
+### a. readline(): 
+
+this takes user input from the keyboard as a single string variable
+
+*Key arguments*
+
+  - prompt: any text to prompt user for keyboard input
+
+### b. scan(): 
+
+this function generates a vector of values entered using the keyboard
+
+*Key arguments*
+
+  - what: mode of data expected from user entry; default is numeric
+  
+## 2. File input
+
+### a. scan(): 
+
+this function can also read from files
+
+*Key arguments*
+
+  - what: mode of data expected from user entry; default is numeric 
+  
+  - sep: delimiter for elements of vector; default is any whitespace
+
+### b. read.csv():
+
+this function specializes in reading comma delimited files into `R`’s workspace as a data frame
+
+*Key arguments*
+
+  - file: what file to read from
+
+  - header: are there column names; defaults to FALSE
+
+  - row.names: what column holds the row names; defaults to none 
+  
+  - stringsAsFactors: should strings be treated as factors; defaults to TRUE
+
+### c. read.table(): 
+
+this function is very similar to `read.csv()`, but can read tabular data with any character as delimiter; to read a text file into `R` as a matrix you must use `read.table()` and then convert the data frame to a matrix with `as.matrix()`.
+
+*Key arguments*
+
+  - file: what file to read from
+
+  - header: are there column names; defaults to FALSE
+
+  - row.names: what column holds the row names; defaults to none
+
+  - sep: specifies the file delimiter; defaults to space delimited 
+  
+  - stringsAsFactors: should strings be treated as factors; defaults to TRUE
+
+# Output
+
+`R` is also capable of outputting information to the screen or file.
+
+## 1. Screen output
+
+### a. print(): 
+
+This is a general function that refers to a print function specific to
+whatever object type you include as an argument
+
+  - outside of a function, users can print an object simply by typing the variable name
+
+  - line numbers are printed along with the variable contents
+
+### b. cat():
+
+this function prints to the screen, but without line numbers
+
+  - this function only prints the variable contents and therefore requires the inclusion of a newline character in the function call
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `cat(”4,5,6”,”\n”)`
+     
+*Key arguments*
+
+  - sep: what should each argument be separated by when printing; default is a space
+
+## 2. File output
+
+### a. cat():
+
+this function can also write to files
+
+*Key arguments*
+
+  - sep: what should each argument be separated by when printing; default is a space
+
+  - file: specifies file name to write to
+
+### b. write.table():
+
+this function writes a matrix or data frame to a delimited text file
+
+*Key arguments*
+
+  - row.names: include row names in file; defaults to TRUE
+
+  - col.names: include column names in file; defaults to TRUE
+
+  - sep: delimiter for text file; defaults to space delimited
+
+  - append: append to the file if it exists or overwrite; defaults to FALSE
+
+# File directory navigation
+
+A number of functions in R allow for interaction with the operating system’s file directories.
+
+  - `dir()` or `list.files()`: lists files present in working directory
+
+  - `file.info()`: provides information about a file, including file size
+
+  - `getwd()`: provides path of working directory
+
+  - `setwd()`: sets path for working directory
+
+  - `file.exists()`: logical test for the presence of a given file in the working directory 
+  
+  - `file.choose()` OR `choose.files()`: opens a graphical user interface file dialogue box
+    
+    + this allows for visual navigation of the file system and selection of a file
+    
+    + `file.choose()` works for Macs and `choose.files()` is `R` in Windows command
