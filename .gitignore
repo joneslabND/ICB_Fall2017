@@ -2,3 +2,6 @@
 .DS_Store?
 answer*
 *.ai
+.Rhistory
+.ipynb*
+.Rapp.history
