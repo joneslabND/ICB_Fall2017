@@ -1,0 +1,69 @@
+---
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Quiz 08 - A Layered Grammar of Graphics
+
+1\) According to the Layered Grammar of Graphics, how many layers would I need if I wanted to create a map depicting the location of the 500 most populous cities across the U.S. and the point size of each city indicated its population size and why? 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) A smoothing or trend line is an example of a:
+
+a. aesthetic mapping
+
+b. statistical transformation
+
+c. geometric object
+
+d. position adjustment
+
+&nbsp;
+
+&nbsp;
+
+## Quiz 08 - A Layered Grammar of Graphics
+
+1\) According to the Layered Grammar of Graphics, how many layers would I need if I wanted to create a map depicting the location of the 500 most populous cities across the U.S. and the point size of each city indicated its population size and why? 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) A smoothing or trend line is an example of a:
+
+a. aesthetic mapping
+
+b. statistical transformation
+
+c. geometric object
+
+d. position adjustment

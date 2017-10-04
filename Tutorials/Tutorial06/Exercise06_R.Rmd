@@ -25,7 +25,7 @@ I first saw this plot a number of years ago when reading about the results of a 
 
 **A couple tips on this one:**
 
-  - You'll want to generate a matrix or dataframe with a cumulative score for each time whenever either team scores.
+  - You'll want to generate a matrix or dataframe with a cumulative score for each team whenever either team scores.
   
   - For plotting purposes, keep it simple. There is a function `plot(x,y,type='l')` in base package, where x and y are vectors and type='l' specifies a line graph. You can add a second line to this graph with `lines(x,y)`. Use the help file for these functions to figure out other argument to customize the line types if you would like.
 

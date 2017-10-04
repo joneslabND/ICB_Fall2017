@@ -25,7 +25,7 @@ I first saw this plot a number of years ago when reading about the results of a 
 
 **A couple tips on this one:**
 
-  - You'll want to generate an array or dataframe with a cumulative score for each time whenever either team scores.
+  - You'll want to generate an array or dataframe with a cumulative score for each team whenever either team scores.
   
   - For plotting purposes, keep it simple. The easiest way to make a plot with two lines is to use the `plot()` function in the `matplotlib.pyplot` package. You'll need a line in your script to import the package (`import matplotlib.pyplot as plt`). Then when you want to plot use the `plot` function with the following syntax `plt.plot(time,UWscore,'r-',time,MSUscore,'g-')`, where time is the time column of your array or dataframe and UW and MSU refer to the cumulative scores for each time in your array or dataframe.`r-` and `g-` indicate solid red and green lines, respectively.
 
@@ -67,7 +67,7 @@ Here's an example game where the random number is 79. User inputs are *italicize
     
     + unlike a for loop that loops over a set, a while loop continues "while" a condition is true and exits the loop once the logic test is false
     
-    + `while logic test:` is the syntax to begin a while loop and then any actions within the loop should come on subsequent tabbed lines
+    + `while logic_test:` is the syntax to begin a while loop and then any actions within the loop should come on subsequent tabbed lines
     
     + there is the possibility of entering what is called an "infinite loop" when using a while loop. In the case of a while loop, an infinite loop goes on forever because by definition the logic test will always be true. To end such a problem, in IPython and Rodeo typing ctrl-c will break you out of the loop.
 

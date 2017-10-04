@@ -1,0 +1,235 @@
+"manufacturer"	"model"	"displ"	"year"	"cyl"	"trans"	"drv"	"cty"	"hwy"
+"audi"	"a4"	1.8	1999	4	"auto(l5)"	"f"	18	29
+"audi"	"a4"	1.8	1999	4	"manual(m5)"	"f"	21	29
+"audi"	"a4"	2	2008	4	"manual(m6)"	"f"	20	31
+"audi"	"a4"	2	2008	4	"auto(av)"	"f"	21	30
+"audi"	"a4"	2.8	1999	6	"auto(l5)"	"f"	16	26
+"audi"	"a4"	2.8	1999	6	"manual(m5)"	"f"	18	26
+"audi"	"a4"	3.1	2008	6	"auto(av)"	"f"	18	27
+"audi"	"a4 quattro"	1.8	1999	4	"manual(m5)"	"4"	18	26
+"audi"	"a4 quattro"	1.8	1999	4	"auto(l5)"	"4"	16	25
+"audi"	"a4 quattro"	2	2008	4	"manual(m6)"	"4"	20	28
+"audi"	"a4 quattro"	2	2008	4	"auto(s6)"	"4"	19	27
+"audi"	"a4 quattro"	2.8	1999	6	"auto(l5)"	"4"	15	25
+"audi"	"a4 quattro"	2.8	1999	6	"manual(m5)"	"4"	17	25
+"audi"	"a4 quattro"	3.1	2008	6	"auto(s6)"	"4"	17	25
+"audi"	"a4 quattro"	3.1	2008	6	"manual(m6)"	"4"	15	25
+"audi"	"a6 quattro"	2.8	1999	6	"auto(l5)"	"4"	15	24
+"audi"	"a6 quattro"	3.1	2008	6	"auto(s6)"	"4"	17	25
+"audi"	"a6 quattro"	4.2	2008	8	"auto(s6)"	"4"	16	23
+"chevrolet"	"c1500 suburban 2wd"	5.3	2008	8	"auto(l4)"	"r"	14	20
+"chevrolet"	"c1500 suburban 2wd"	5.3	2008	8	"auto(l4)"	"r"	11	15
+"chevrolet"	"c1500 suburban 2wd"	5.3	2008	8	"auto(l4)"	"r"	14	20
+"chevrolet"	"c1500 suburban 2wd"	5.7	1999	8	"auto(l4)"	"r"	13	17
+"chevrolet"	"c1500 suburban 2wd"	6	2008	8	"auto(l4)"	"r"	12	17
+"chevrolet"	"corvette"	5.7	1999	8	"manual(m6)"	"r"	16	26
+"chevrolet"	"corvette"	5.7	1999	8	"auto(l4)"	"r"	15	23
+"chevrolet"	"corvette"	6.2	2008	8	"manual(m6)"	"r"	16	26
+"chevrolet"	"corvette"	6.2	2008	8	"auto(s6)"	"r"	15	25
+"chevrolet"	"corvette"	7	2008	8	"manual(m6)"	"r"	15	24
+"chevrolet"	"k1500 tahoe 4wd"	5.3	2008	8	"auto(l4)"	"4"	14	19
+"chevrolet"	"k1500 tahoe 4wd"	5.3	2008	8	"auto(l4)"	"4"	11	14
+"chevrolet"	"k1500 tahoe 4wd"	5.7	1999	8	"auto(l4)"	"4"	11	15
+"chevrolet"	"k1500 tahoe 4wd"	6.5	1999	8	"auto(l4)"	"4"	14	17
+"chevrolet"	"malibu"	2.4	1999	4	"auto(l4)"	"f"	19	27
+"chevrolet"	"malibu"	2.4	2008	4	"auto(l4)"	"f"	22	30
+"chevrolet"	"malibu"	3.1	1999	6	"auto(l4)"	"f"	18	26
+"chevrolet"	"malibu"	3.5	2008	6	"auto(l4)"	"f"	18	29
+"chevrolet"	"malibu"	3.6	2008	6	"auto(s6)"	"f"	17	26
+"dodge"	"caravan 2wd"	2.4	1999	4	"auto(l3)"	"f"	18	24
+"dodge"	"caravan 2wd"	3	1999	6	"auto(l4)"	"f"	17	24
+"dodge"	"caravan 2wd"	3.3	1999	6	"auto(l4)"	"f"	16	22
+"dodge"	"caravan 2wd"	3.3	1999	6	"auto(l4)"	"f"	16	22
+"dodge"	"caravan 2wd"	3.3	2008	6	"auto(l4)"	"f"	17	24
+"dodge"	"caravan 2wd"	3.3	2008	6	"auto(l4)"	"f"	17	24
+"dodge"	"caravan 2wd"	3.3	2008	6	"auto(l4)"	"f"	11	17
+"dodge"	"caravan 2wd"	3.8	1999	6	"auto(l4)"	"f"	15	22
+"dodge"	"caravan 2wd"	3.8	1999	6	"auto(l4)"	"f"	15	21
+"dodge"	"caravan 2wd"	3.8	2008	6	"auto(l6)"	"f"	16	23
+"dodge"	"caravan 2wd"	4	2008	6	"auto(l6)"	"f"	16	23
+"dodge"	"dakota pickup 4wd"	3.7	2008	6	"manual(m6)"	"4"	15	19
+"dodge"	"dakota pickup 4wd"	3.7	2008	6	"auto(l4)"	"4"	14	18
+"dodge"	"dakota pickup 4wd"	3.9	1999	6	"auto(l4)"	"4"	13	17
+"dodge"	"dakota pickup 4wd"	3.9	1999	6	"manual(m5)"	"4"	14	17
+"dodge"	"dakota pickup 4wd"	4.7	2008	8	"auto(l5)"	"4"	14	19
+"dodge"	"dakota pickup 4wd"	4.7	2008	8	"auto(l5)"	"4"	14	19
+"dodge"	"dakota pickup 4wd"	4.7	2008	8	"auto(l5)"	"4"	9	12
+"dodge"	"dakota pickup 4wd"	5.2	1999	8	"manual(m5)"	"4"	11	17
+"dodge"	"dakota pickup 4wd"	5.2	1999	8	"auto(l4)"	"4"	11	15
+"dodge"	"durango 4wd"	3.9	1999	6	"auto(l4)"	"4"	13	17
+"dodge"	"durango 4wd"	4.7	2008	8	"auto(l5)"	"4"	13	17
+"dodge"	"durango 4wd"	4.7	2008	8	"auto(l5)"	"4"	9	12
+"dodge"	"durango 4wd"	4.7	2008	8	"auto(l5)"	"4"	13	17
+"dodge"	"durango 4wd"	5.2	1999	8	"auto(l4)"	"4"	11	16
+"dodge"	"durango 4wd"	5.7	2008	8	"auto(l5)"	"4"	13	18
+"dodge"	"durango 4wd"	5.9	1999	8	"auto(l4)"	"4"	11	15
+"dodge"	"ram 1500 pickup 4wd"	4.7	2008	8	"manual(m6)"	"4"	12	16
+"dodge"	"ram 1500 pickup 4wd"	4.7	2008	8	"auto(l5)"	"4"	9	12
+"dodge"	"ram 1500 pickup 4wd"	4.7	2008	8	"auto(l5)"	"4"	13	17
+"dodge"	"ram 1500 pickup 4wd"	4.7	2008	8	"auto(l5)"	"4"	13	17
+"dodge"	"ram 1500 pickup 4wd"	4.7	2008	8	"manual(m6)"	"4"	12	16
+"dodge"	"ram 1500 pickup 4wd"	4.7	2008	8	"manual(m6)"	"4"	9	12
+"dodge"	"ram 1500 pickup 4wd"	5.2	1999	8	"auto(l4)"	"4"	11	15
+"dodge"	"ram 1500 pickup 4wd"	5.2	1999	8	"manual(m5)"	"4"	11	16
+"dodge"	"ram 1500 pickup 4wd"	5.7	2008	8	"auto(l5)"	"4"	13	17
+"dodge"	"ram 1500 pickup 4wd"	5.9	1999	8	"auto(l4)"	"4"	11	15
+"ford"	"expedition 2wd"	4.6	1999	8	"auto(l4)"	"r"	11	17
+"ford"	"expedition 2wd"	5.4	1999	8	"auto(l4)"	"r"	11	17
+"ford"	"expedition 2wd"	5.4	2008	8	"auto(l6)"	"r"	12	18
+"ford"	"explorer 4wd"	4	1999	6	"auto(l5)"	"4"	14	17
+"ford"	"explorer 4wd"	4	1999	6	"manual(m5)"	"4"	15	19
+"ford"	"explorer 4wd"	4	1999	6	"auto(l5)"	"4"	14	17
+"ford"	"explorer 4wd"	4	2008	6	"auto(l5)"	"4"	13	19
+"ford"	"explorer 4wd"	4.6	2008	8	"auto(l6)"	"4"	13	19
+"ford"	"explorer 4wd"	5	1999	8	"auto(l4)"	"4"	13	17
+"ford"	"f150 pickup 4wd"	4.2	1999	6	"auto(l4)"	"4"	14	17
+"ford"	"f150 pickup 4wd"	4.2	1999	6	"manual(m5)"	"4"	14	17
+"ford"	"f150 pickup 4wd"	4.6	1999	8	"manual(m5)"	"4"	13	16
+"ford"	"f150 pickup 4wd"	4.6	1999	8	"auto(l4)"	"4"	13	16
+"ford"	"f150 pickup 4wd"	4.6	2008	8	"auto(l4)"	"4"	13	17
+"ford"	"f150 pickup 4wd"	5.4	1999	8	"auto(l4)"	"4"	11	15
+"ford"	"f150 pickup 4wd"	5.4	2008	8	"auto(l4)"	"4"	13	17
+"ford"	"mustang"	3.8	1999	6	"manual(m5)"	"r"	18	26
+"ford"	"mustang"	3.8	1999	6	"auto(l4)"	"r"	18	25
+"ford"	"mustang"	4	2008	6	"manual(m5)"	"r"	17	26
+"ford"	"mustang"	4	2008	6	"auto(l5)"	"r"	16	24
+"ford"	"mustang"	4.6	1999	8	"auto(l4)"	"r"	15	21
+"ford"	"mustang"	4.6	1999	8	"manual(m5)"	"r"	15	22
+"ford"	"mustang"	4.6	2008	8	"manual(m5)"	"r"	15	23
+"ford"	"mustang"	4.6	2008	8	"auto(l5)"	"r"	15	22
+"ford"	"mustang"	5.4	2008	8	"manual(m6)"	"r"	14	20
+"honda"	"civic"	1.6	1999	4	"manual(m5)"	"f"	28	33
+"honda"	"civic"	1.6	1999	4	"auto(l4)"	"f"	24	32
+"honda"	"civic"	1.6	1999	4	"manual(m5)"	"f"	25	32
+"honda"	"civic"	1.6	1999	4	"manual(m5)"	"f"	23	29
+"honda"	"civic"	1.6	1999	4	"auto(l4)"	"f"	24	32
+"honda"	"civic"	1.8	2008	4	"manual(m5)"	"f"	26	34
+"honda"	"civic"	1.8	2008	4	"auto(l5)"	"f"	25	36
+"honda"	"civic"	1.8	2008	4	"auto(l5)"	"f"	24	36
+"honda"	"civic"	2	2008	4	"manual(m6)"	"f"	21	29
+"hyundai"	"sonata"	2.4	1999	4	"auto(l4)"	"f"	18	26
+"hyundai"	"sonata"	2.4	1999	4	"manual(m5)"	"f"	18	27
+"hyundai"	"sonata"	2.4	2008	4	"auto(l4)"	"f"	21	30
+"hyundai"	"sonata"	2.4	2008	4	"manual(m5)"	"f"	21	31
+"hyundai"	"sonata"	2.5	1999	6	"auto(l4)"	"f"	18	26
+"hyundai"	"sonata"	2.5	1999	6	"manual(m5)"	"f"	18	26
+"hyundai"	"sonata"	3.3	2008	6	"auto(l5)"	"f"	19	28
+"hyundai"	"tiburon"	2	1999	4	"auto(l4)"	"f"	19	26
+"hyundai"	"tiburon"	2	1999	4	"manual(m5)"	"f"	19	29
+"hyundai"	"tiburon"	2	2008	4	"manual(m5)"	"f"	20	28
+"hyundai"	"tiburon"	2	2008	4	"auto(l4)"	"f"	20	27
+"hyundai"	"tiburon"	2.7	2008	6	"auto(l4)"	"f"	17	24
+"hyundai"	"tiburon"	2.7	2008	6	"manual(m6)"	"f"	16	24
+"hyundai"	"tiburon"	2.7	2008	6	"manual(m5)"	"f"	17	24
+"jeep"	"grand cherokee 4wd"	3	2008	6	"auto(l5)"	"4"	17	22
+"jeep"	"grand cherokee 4wd"	3.7	2008	6	"auto(l5)"	"4"	15	19
+"jeep"	"grand cherokee 4wd"	4	1999	6	"auto(l4)"	"4"	15	20
+"jeep"	"grand cherokee 4wd"	4.7	1999	8	"auto(l4)"	"4"	14	17
+"jeep"	"grand cherokee 4wd"	4.7	2008	8	"auto(l5)"	"4"	9	12
+"jeep"	"grand cherokee 4wd"	4.7	2008	8	"auto(l5)"	"4"	14	19
+"jeep"	"grand cherokee 4wd"	5.7	2008	8	"auto(l5)"	"4"	13	18
+"jeep"	"grand cherokee 4wd"	6.1	2008	8	"auto(l5)"	"4"	11	14
+"land rover"	"range rover"	4	1999	8	"auto(l4)"	"4"	11	15
+"land rover"	"range rover"	4.2	2008	8	"auto(s6)"	"4"	12	18
+"land rover"	"range rover"	4.4	2008	8	"auto(s6)"	"4"	12	18
+"land rover"	"range rover"	4.6	1999	8	"auto(l4)"	"4"	11	15
+"lincoln"	"navigator 2wd"	5.4	1999	8	"auto(l4)"	"r"	11	17
+"lincoln"	"navigator 2wd"	5.4	1999	8	"auto(l4)"	"r"	11	16
+"lincoln"	"navigator 2wd"	5.4	2008	8	"auto(l6)"	"r"	12	18
+"mercury"	"mountaineer 4wd"	4	1999	6	"auto(l5)"	"4"	14	17
+"mercury"	"mountaineer 4wd"	4	2008	6	"auto(l5)"	"4"	13	19
+"mercury"	"mountaineer 4wd"	4.6	2008	8	"auto(l6)"	"4"	13	19
+"mercury"	"mountaineer 4wd"	5	1999	8	"auto(l4)"	"4"	13	17
+"nissan"	"altima"	2.4	1999	4	"manual(m5)"	"f"	21	29
+"nissan"	"altima"	2.4	1999	4	"auto(l4)"	"f"	19	27
+"nissan"	"altima"	2.5	2008	4	"auto(av)"	"f"	23	31
+"nissan"	"altima"	2.5	2008	4	"manual(m6)"	"f"	23	32
+"nissan"	"altima"	3.5	2008	6	"manual(m6)"	"f"	19	27
+"nissan"	"altima"	3.5	2008	6	"auto(av)"	"f"	19	26
+"nissan"	"maxima"	3	1999	6	"auto(l4)"	"f"	18	26
+"nissan"	"maxima"	3	1999	6	"manual(m5)"	"f"	19	25
+"nissan"	"maxima"	3.5	2008	6	"auto(av)"	"f"	19	25
+"nissan"	"pathfinder 4wd"	3.3	1999	6	"auto(l4)"	"4"	14	17
+"nissan"	"pathfinder 4wd"	3.3	1999	6	"manual(m5)"	"4"	15	17
+"nissan"	"pathfinder 4wd"	4	2008	6	"auto(l5)"	"4"	14	20
+"nissan"	"pathfinder 4wd"	5.6	2008	8	"auto(s5)"	"4"	12	18
+"pontiac"	"grand prix"	3.1	1999	6	"auto(l4)"	"f"	18	26
+"pontiac"	"grand prix"	3.8	1999	6	"auto(l4)"	"f"	16	26
+"pontiac"	"grand prix"	3.8	1999	6	"auto(l4)"	"f"	17	27
+"pontiac"	"grand prix"	3.8	2008	6	"auto(l4)"	"f"	18	28
+"pontiac"	"grand prix"	5.3	2008	8	"auto(s4)"	"f"	16	25
+"subaru"	"forester awd"	2.5	1999	4	"manual(m5)"	"4"	18	25
+"subaru"	"forester awd"	2.5	1999	4	"auto(l4)"	"4"	18	24
+"subaru"	"forester awd"	2.5	2008	4	"manual(m5)"	"4"	20	27
+"subaru"	"forester awd"	2.5	2008	4	"manual(m5)"	"4"	19	25
+"subaru"	"forester awd"	2.5	2008	4	"auto(l4)"	"4"	20	26
+"subaru"	"forester awd"	2.5	2008	4	"auto(l4)"	"4"	18	23
+"subaru"	"impreza awd"	2.2	1999	4	"auto(l4)"	"4"	21	26
+"subaru"	"impreza awd"	2.2	1999	4	"manual(m5)"	"4"	19	26
+"subaru"	"impreza awd"	2.5	1999	4	"manual(m5)"	"4"	19	26
+"subaru"	"impreza awd"	2.5	1999	4	"auto(l4)"	"4"	19	26
+"subaru"	"impreza awd"	2.5	2008	4	"auto(s4)"	"4"	20	25
+"subaru"	"impreza awd"	2.5	2008	4	"auto(s4)"	"4"	20	27
+"subaru"	"impreza awd"	2.5	2008	4	"manual(m5)"	"4"	19	25
+"subaru"	"impreza awd"	2.5	2008	4	"manual(m5)"	"4"	20	27
+"toyota"	"4runner 4wd"	2.7	1999	4	"manual(m5)"	"4"	15	20
+"toyota"	"4runner 4wd"	2.7	1999	4	"auto(l4)"	"4"	16	20
+"toyota"	"4runner 4wd"	3.4	1999	6	"auto(l4)"	"4"	15	19
+"toyota"	"4runner 4wd"	3.4	1999	6	"manual(m5)"	"4"	15	17
+"toyota"	"4runner 4wd"	4	2008	6	"auto(l5)"	"4"	16	20
+"toyota"	"4runner 4wd"	4.7	2008	8	"auto(l5)"	"4"	14	17
+"toyota"	"camry"	2.2	1999	4	"manual(m5)"	"f"	21	29
+"toyota"	"camry"	2.2	1999	4	"auto(l4)"	"f"	21	27
+"toyota"	"camry"	2.4	2008	4	"manual(m5)"	"f"	21	31
+"toyota"	"camry"	2.4	2008	4	"auto(l5)"	"f"	21	31
+"toyota"	"camry"	3	1999	6	"auto(l4)"	"f"	18	26
+"toyota"	"camry"	3	1999	6	"manual(m5)"	"f"	18	26
+"toyota"	"camry"	3.5	2008	6	"auto(s6)"	"f"	19	28
+"toyota"	"camry solara"	2.2	1999	4	"auto(l4)"	"f"	21	27
+"toyota"	"camry solara"	2.2	1999	4	"manual(m5)"	"f"	21	29
+"toyota"	"camry solara"	2.4	2008	4	"manual(m5)"	"f"	21	31
+"toyota"	"camry solara"	2.4	2008	4	"auto(s5)"	"f"	22	31
+"toyota"	"camry solara"	3	1999	6	"auto(l4)"	"f"	18	26
+"toyota"	"camry solara"	3	1999	6	"manual(m5)"	"f"	18	26
+"toyota"	"camry solara"	3.3	2008	6	"auto(s5)"	"f"	18	27
+"toyota"	"corolla"	1.8	1999	4	"auto(l3)"	"f"	24	30
+"toyota"	"corolla"	1.8	1999	4	"auto(l4)"	"f"	24	33
+"toyota"	"corolla"	1.8	1999	4	"manual(m5)"	"f"	26	35
+"toyota"	"corolla"	1.8	2008	4	"manual(m5)"	"f"	28	37
+"toyota"	"corolla"	1.8	2008	4	"auto(l4)"	"f"	26	35
+"toyota"	"land cruiser wagon 4wd"	4.7	1999	8	"auto(l4)"	"4"	11	15
+"toyota"	"land cruiser wagon 4wd"	5.7	2008	8	"auto(s6)"	"4"	13	18
+"toyota"	"toyota tacoma 4wd"	2.7	1999	4	"manual(m5)"	"4"	15	20
+"toyota"	"toyota tacoma 4wd"	2.7	1999	4	"auto(l4)"	"4"	16	20
+"toyota"	"toyota tacoma 4wd"	2.7	2008	4	"manual(m5)"	"4"	17	22
+"toyota"	"toyota tacoma 4wd"	3.4	1999	6	"manual(m5)"	"4"	15	17
+"toyota"	"toyota tacoma 4wd"	3.4	1999	6	"auto(l4)"	"4"	15	19
+"toyota"	"toyota tacoma 4wd"	4	2008	6	"manual(m6)"	"4"	15	18
+"toyota"	"toyota tacoma 4wd"	4	2008	6	"auto(l5)"	"4"	16	20
+"volkswagen"	"gti"	2	1999	4	"manual(m5)"	"f"	21	29
+"volkswagen"	"gti"	2	1999	4	"auto(l4)"	"f"	19	26
+"volkswagen"	"gti"	2	2008	4	"manual(m6)"	"f"	21	29
+"volkswagen"	"gti"	2	2008	4	"auto(s6)"	"f"	22	29
+"volkswagen"	"gti"	2.8	1999	6	"manual(m5)"	"f"	17	24
+"volkswagen"	"jetta"	1.9	1999	4	"manual(m5)"	"f"	33	44
+"volkswagen"	"jetta"	2	1999	4	"manual(m5)"	"f"	21	29
+"volkswagen"	"jetta"	2	1999	4	"auto(l4)"	"f"	19	26
+"volkswagen"	"jetta"	2	2008	4	"auto(s6)"	"f"	22	29
+"volkswagen"	"jetta"	2	2008	4	"manual(m6)"	"f"	21	29
+"volkswagen"	"jetta"	2.5	2008	5	"auto(s6)"	"f"	21	29
+"volkswagen"	"jetta"	2.5	2008	5	"manual(m5)"	"f"	21	29
+"volkswagen"	"jetta"	2.8	1999	6	"auto(l4)"	"f"	16	23
+"volkswagen"	"jetta"	2.8	1999	6	"manual(m5)"	"f"	17	24
+"volkswagen"	"new beetle"	1.9	1999	4	"manual(m5)"	"f"	35	44
+"volkswagen"	"new beetle"	1.9	1999	4	"auto(l4)"	"f"	29	41
+"volkswagen"	"new beetle"	2	1999	4	"manual(m5)"	"f"	21	29
+"volkswagen"	"new beetle"	2	1999	4	"auto(l4)"	"f"	19	26
+"volkswagen"	"new beetle"	2.5	2008	5	"manual(m5)"	"f"	20	28
+"volkswagen"	"new beetle"	2.5	2008	5	"auto(s6)"	"f"	20	29
+"volkswagen"	"passat"	1.8	1999	4	"manual(m5)"	"f"	21	29
+"volkswagen"	"passat"	1.8	1999	4	"auto(l5)"	"f"	18	29
+"volkswagen"	"passat"	2	2008	4	"auto(s6)"	"f"	19	28
+"volkswagen"	"passat"	2	2008	4	"manual(m6)"	"f"	21	29
+"volkswagen"	"passat"	2.8	1999	6	"auto(l5)"	"f"	16	26
+"volkswagen"	"passat"	2.8	1999	6	"manual(m5)"	"f"	18	26
+"volkswagen"	"passat"	3.6	2008	6	"auto(s6)"	"f"	17	26
