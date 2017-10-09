@@ -11,7 +11,7 @@ To begin this week, one of the partners should fork the TA's Exercise 7 Github r
 
 &nbsp;
 
-1\. Write a script that creates two plots summarizing information about "Lecture11.fasta". In the first plot, present a histogram of sequence lengths, and in the second plot present a histogram of GC content of the sequences. There is code that Stuart provided last week after lecture in your cloned repo to help process these data if you need help with that.
+1\. Write a script that creates two plots summarizing information about "Lecture11.fasta". In the first plot, present a histogram of sequence lengths, and in the second plot present a histogram of GC content of the sequences. There is code that Stuart provided last week after lecture in your cloned repo to help process these data if you need help with that, but I encourage you to try to translate the pseudocode we wrote in lecture last week into real code for this problem.
 
 &nbsp;
 
