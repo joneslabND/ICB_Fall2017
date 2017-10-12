@@ -1,0 +1,24 @@
+---
+title: "Extra Practice 1"
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+Work through these extra problems if you have time or interest. The files needed to complete the exercise are available on Sakai or in the class GitHub repo. Feel free to approach Stuart or the TAs with any questions on these. Stuart will post the answers for your reference.
+
+&nbsp;
+
+1\. You conducted an experiment over the summer where you measured the expression of a stress response gene in Daphnia under three temperature levels (T1, T2, T3). Your undergraduate research assistant is now back at their home institution, but left you the data file “ThankYouREU.txt”. Unfortunately, the research assistant wasn’t very careful in labeling the treatments and the labels are a bit of a mess. The assistant assures you that data labeled “T4” comes from T3 experimental units.  Use your string manipulation skills to cleanup this data table and create a bar graph of mean expression levels under the various treatments.
+
+&nbsp;
+
+2\. In the “somegenes.fasta”, find open reading frames and translate the sequence into the proteins the open reading frames would generate. You know that genes start with “ATG” and end with “TAG”, “TAA”, or “TGA”. Some sequences will not contain protein coding regions and some will.
+
+&nbsp;
+
+3\. You hypothesize that population density in Indiana Counties is correlated with the percent of land covered by lakes, rivers, and streams. You collect percent surface water land cover data from a GIS database (“IndianaCountyPercentWater.txt”) and you collect population density data from the Census Bureau (“IndianaCountyPopDensity.txt”). Unfortunately, the two data sources use different formats for county names. Reformat one set of names and merge the data into a single data frame. Generate a plot that tests your hypothesis.
+
+&nbsp;
+
+4\. You are provided files containing daily precipitation for the year 2010 from each of 20 major cities in the U.S. Create a script that generates a summary table with minimum daily, maximum daily, and total precipitation for each city. Generate some plots that depict your summary figures.
