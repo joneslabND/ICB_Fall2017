@@ -1,0 +1,169 @@
+---
+title: "Lecture 16 - Statistical applications: Kelly *et al*. 2014 & Maximum likelihood"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: ../mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## A little background on lake foodwebs...
+
+\begin{figure}
+  \includegraphics[width=0.95\textwidth]{foodweb.jpeg}
+\end{figure}
+
+## What's a resource subsidy?
+
+## What's a resource subsidy?
+\begin{figure}
+  \includegraphics[width=0.95\textwidth]{subsidy.jpeg}
+\end{figure}
+
+## How did Kelly *et al*. ask whether terrestrial DOC was a subsidy for lakes?
+
+## How did Kelly *et al*. ask whether terrestrial DOC was a subsidy for lakes?
+\begin{figure}
+  \includegraphics[width=0.65\textwidth]{fig1A.jpeg}
+\end{figure}
+
+## How did Kelly *et al*. ask whether terrestrial DOC was a subsidy for lakes?
+\begin{figure}
+  \includegraphics[width=\textwidth]{table1.jpeg}
+\end{figure}
+
+## How did Kelly *et al*. ask whether terrestrial DOC was a subsidy for lakes?
+\begin{figure}
+  \includegraphics[width=0.95\textwidth]{table2.jpeg}
+\end{figure}
+
+## How did Kelly *et al*. ask whether terrestrial DOC was a subsidy for lakes?
+\begin{figure}
+  \includegraphics[width=\textwidth]{method.jpeg}
+\end{figure}
+
+## Stuart's version of statistics
+
+My (short) version of statistics relies on two concepts:
+
+&nbsp;
+
+- random variables
+
+- linear, and sometimes simple non-linear, models
+
+## Random variables
+
+&nbsp;
+
+- a way to quantify the outcomes of a random process
+
+- a way to map a random process to numbers
+
+&nbsp;
+
+**Repeated quantification of the same random process begets a probability distribution!**
+
+## Probability distributions
+
+&nbsp;
+
+- describe a variety of random processes and therefore have a number of different characteristics and shapes
+
+- can be used to test hypotheses or models
+
+## Probability distributions
+\begin{figure}
+  \includegraphics[width=\textwidth]{distributions.jpeg}
+\end{figure}
+
+## Probability distributions
+
+&nbsp;
+
+- describe a variety of random processes and therefore have a number of different characteristics and shapes
+
+- can be used to test hypotheses or models
+
+- we can do this using something called a **Likelihood**
+
+&nbsp;
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `L(model|data) = P(data|model)`
+
+## Example with coin flips
+
+Imagine we flipped a coin twice and got two heads...
+
+&nbsp;
+
+What are a couple hypothesis or models for our coin?
+
+## Example with coin flips
+
+What is the likelihood of our two models?
+
+## Example with coin flips
+
+What is the likelihood of our two models?
+
+&nbsp;
+
+What if we flipped 8 more times and got 3 heads and 5 tails?
+
+&nbsp;
+
+What is the likelihood of our two models?
+
+## Linear models
+
+&nbsp;
+
+- familiar with the equation for a line?
+
+- that is a linear model, but isn't exactly what is meant by a "linear model"...
+
+- how did Kelly *et al*. use linear models?
+
+## linear models + probability distributions = biological hypothesis testing
+
+&nbsp;
+
+our coin flip example didn't include a linear model, but it did have a probability distribution
+
+&nbsp;
+
+so far our discussion of Kelly *et al*. 2014 hasn't had a probability distribution, but how might we add one?
+
+## what does adding this probability distribution accomplish?
+
+## what does adding this probability distribution accomplish?
+
+- accounts for "variation"
+  
+    + measurement error
+  
+    + genetic variation across populations
+  
+    + variation in growth rate across individuals
+  
+    + etc.
+
+- allows us to compare one model to another, including a null (purely random) model
+
+    + do this using Likelihoods
+    
+## Wednesday
+
+&nbsp;
+
+talk about how to translate our models into code and confront with data
+
+&nbsp;
+
+practice with some data from Kelly *et al*. 2014 and other examples

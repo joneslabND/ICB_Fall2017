@@ -1,0 +1,73 @@
+---
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Quiz 10 - Kelly et al. 2014
+
+1\) What's a resource subsidy? 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) Describe the data analysis used to support the statement "the negative effect of reduced light penetration on the amount of suitable habitat and the low resource quality of terrestrial organic carbon appear to diminish zooplankton production".
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Quiz 10 - Kelly et al. 2014
+
+1\) What's a resource subsidy? 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) Describe the data analysis used to support the statement "the negative effect of reduced light penetration on the amount of suitable habitat and the low resource quality of terrestrial organic carbon appear to diminish zooplankton production".
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
