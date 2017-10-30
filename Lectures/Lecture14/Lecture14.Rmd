@@ -1,0 +1,301 @@
+---
+title: "Lecture 14 - Regular Expressions (regex)"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Regular Expressions
+
+What are **Regular Expressions**?
+
+
+## Regular Expressions
+
+What are **Regular Expressions**?
+
+&nbsp;
+
+&nbsp;
+
+**Regex**: a tool for pattern matching in strings
+
+
+## Regular Expressions
+
+What are **Regular Expressions**?
+
+&nbsp;
+
+**Regex**: a tool for pattern matching in strings
+
+&nbsp;
+
+`^(?:(?:(?:0?[13578]|1[02])(\/|-|\.)31)\1|(?:(?:0?[13-9]|`
+`1[0-2])(\/|-|\.)(?:29|30)\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$`
+`|^(?:0?2(\/|-|\.)29\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|`
+`[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])`
+`00))))$|^(?:(?:0?[1-9])|(?:1[0-2]))(\/|-|\.)(?:0?[1-9]|1`
+`\d|2[0-8])\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$`
+
+
+## Simplest Example
+
+Character to character match
+
+&nbsp;
+
+&nbsp;
+
+`grep` (**g**lobally search a **r**egular **e**xpression and **p**rint)
+
+
+## Simplest Example
+
+`grep 'Biology' myCV.txt`
+
+&nbsp;
+
+&nbsp;
+
+**BIOS 101: Biology for non-majors**
+
+`BIOS 185: Introduction to biology for majors`
+
+&nbsp;
+
+&nbsp;
+
+Matches `Biology`, but not `biology` because regex are **case sensitive**
+
+## Metacharacters
+
+Metacharacters have special meanings (i.e. don't match themselves)
+
+`$`
+
+`^`
+
+`.`
+
+`*`
+
+`?`
+
+`{ }`
+
+`[ ]`
+
+`( )`
+
+`|`
+
+`\`
+
+
+## Wildcard
+
+`.` &nbsp; Any single character (except `\n`)
+
+
+## Wildcard
+
+`grep '.iology' myCV.txt`
+
+&nbsp;
+
+&nbsp;
+
+**BIOS 101: Biology for non-majors**
+
+**BIOS 185: Introduction to biology for majors**
+
+
+## Character classes
+
+`[ ]` &nbsp; Designates a **character class**
+
+&nbsp;
+
+&nbsp;
+
+List multiple options within `[ ]`
+
+&nbsp;
+
+&nbsp;
+
+Represents a single character
+
+
+## Character classes
+
+`grep '[Bb]iology' myCV.txt`
+
+&nbsp;
+
+&nbsp;
+
+**BIOS 101: Biology for non-majors**
+
+**BIOS 185: Introduction to biology for majors**
+
+
+## Character classes
+
+Metacharacters lose their special meanings inside `[ ]`
+
+&nbsp;
+
+&nbsp;
+
+`grep '.iology' myCV.txt`
+
+**BIOS 101: Biology for non-majors**
+
+**BIOS 185: Introduction to biology for majors**
+
+&nbsp;
+
+&nbsp;
+
+`grep '[.]iology' myCV.txt`
+
+Returns nothing
+
+
+## Character classes
+
+`[0-9]` &nbsp; `-` Indicates a range of options
+
+&nbsp;
+
+&nbsp;
+
+`[A-Za-z0-9_]` &nbsp; Concatenate ranges and character options
+
+&nbsp;
+
+&nbsp;
+
+`[ \t\n]` &nbsp; Represent whitespace
+
+
+## Character classes (Perl-like)
+
+`\d` &nbsp; `[0-9]` &nbsp; Single digit
+
+&nbsp;
+
+&nbsp;
+
+`\w` &nbsp; `[A-Za-z0-9_]` &nbsp; Single alphanumeric character or `_`
+
+&nbsp;
+
+&nbsp;
+
+`\s` &nbsp; `[ \t\n]` &nbsp; Single whitespace character
+
+
+## Negation of character classes
+
+`[^]` &nbsp; `^` Inside of brackets negates a character class
+
+&nbsp;
+
+&nbsp;
+
+`[^0-9]` &nbsp; `\D` &nbsp; Single non-digit
+
+&nbsp;
+
+&nbsp;
+
+`[^A-Za-z0-9_]` &nbsp; `\W` &nbsp; Single character, not alphanumeric or `_`
+
+&nbsp;
+
+&nbsp;
+
+`[^ \t\n]` &nbsp; `\S` &nbsp; Single non-whitespace character
+
+
+## Quantifiers
+
+`*` zero or more matches
+
+&nbsp;
+
+`+` one or more matches
+
+&nbsp;
+
+`?` zero or one match (also makes other qualifiers non-greedy)
+
+&nbsp;
+
+`{n}` exactly `n` matches of preceding character
+
+&nbsp;
+
+`{m,n}` at least `m` and up to `n` matches
+
+
+## Grouping
+
+A quantifier refers to only the preceding single character/class
+
+&nbsp;
+
+&nbsp;
+
+`( )` &nbsp; Groups characters for quantifiers
+
+
+## Escape character
+
+How to literally match a metacharacter?
+
+&nbsp;
+
+&nbsp;
+
+`\` &nbsp; escapes a metacharacter 
+
+
+## Example
+
+2139.Rpomonella.hawthorn.Dowagiac.MI.m
+
+2140.Rpomonella.haw.Dowagiac.MI.m
+
+2000.Rpomonella.Haw.Urbana.IL.f
+
+2001.Rpomonella.Hawthorn.Urbana.IL.f
+
+
+## Example
+
+2139.Rpomonella.hawthorn.Dowagiac.MI.m
+
+2140.Rpomonella.haw.Dowagiac.MI.m
+
+2000.Rpomonella.Haw.Urbana.IL.f
+
+2001.Rpomonella.Hawthorn.Urbana.IL.f
+
+&nbsp;
+
+&nbsp;
+
+`[0-9]{4}\.Rpomonella\.[Hh]aw(thorn)?\.[A-Z][a-z]+`
+`\.[A-Z]{2}\.[mf]`
+

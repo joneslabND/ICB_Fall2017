@@ -1,0 +1,68 @@
+---
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Quiz 09 - Regular expressions
+
+1\) In your own words, state the purpose of a regular expression.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) Without using specific syntax, design a regular expression to "find"" all of the following email addresses. Be as specific as possible. (e.g.  Phone numbers in the format 987-5432 would be matched by a regular expression that specified 3 digits, a dash, four digits.)
+
+a\) person1@nd.edu
+
+b\) another.student@gmail.com
+
+c\) Scientist_3@USDA.gov
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Quiz 09 - Regular expressions
+
+1\) In your own words, state the purpose of a regular expression.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) Without using specific syntax, design a regular expression to "find"" all of the following email addresses. Be as specific as possible. (e.g.  Phone numbers in the format 987-5432 would be matched by a regular expression that specified 3 digits, a dash, four digits.)
+
+a\) person1@nd.edu
+
+b\) another.student@gmail.com
+
+c\) Scientist_3@USDA.gov
+

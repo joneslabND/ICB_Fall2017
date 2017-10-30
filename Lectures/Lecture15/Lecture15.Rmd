@@ -1,0 +1,233 @@
+---
+title: "Lecture 15 - String Manipulations with Regular Expressions"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Anchors
+
+^ &nbsp; Indicates the beginning of a line
+
+&nbsp;
+
+&nbsp;
+
+$ &nbsp; Indicates the end of a line
+
+## Anchors
+
+`@0_V10.F.030_FCC638CACXX:5:1101:1193:1928#ATCNCGATC/1`
+`TCATGTATAAAAATGCCGTATGTGTCTGTTCGTTTGCCATTCATAGACTCGAAAACT`
+`+`
+`efhggfhfhhhdggXdfffcgcfhh_e_cedfddhhhhhbcfadbgeg]ddbZ^a]_`
+
+&nbsp;
+
+&nbsp;
+ 
+&nbsp;
+
+
+## Anchors
+
+`@0_V10.F.030_FCC638CACXX:5:1101:1193:1928#ATCNCGATC/1`
+`TCATGTATAAAAATGCCGTATGTGTCTGTTCGTTTGCCATTCATAGACTCGAAAACT`
+`+`
+`efhggfhfhhhdggXdfffcgcfhh_e_cedfddhhhhhbcfadbgeg]ddbZ^a]_`
+
+&nbsp;
+
+&nbsp;
+
+**^\@.+/1$**
+
+##Conditional
+
+`|` &nbsp; Indicates **or** when placed between two strings
+
+
+##Conditional
+
+`grep '(B|b)iology' myCV.txt`
+
+&nbsp;
+
+&nbsp;
+
+**BIOS 101: Biology for non-majors**
+
+**BIOS 185: Introduction to biology for majors**
+
+
+##Backreferencing
+
+`( )` &nbsp; Groups the string within
+
+&nbsp;
+
+&nbsp;
+
+`\1` &nbsp; References the string within the group
+
+
+##Backreferencing
+
+**2139**.Rpomonella.**haw**thorn.**Dow**agiac.MI.m
+
+**2140**.Rpomonella.**haw**.**Dow**agiac.MI.m
+
+**2000**.Rpomonella.**Haw**.**Urb**ana.IL.f
+
+**2001**.Rpomonella.**Haw**thorn.**Urb**ana.IL.f
+
+&nbsp;
+
+Haw_**SiteAbbrev_ID#**
+
+&nbsp;
+
+`[0-9]{4}\.Rpomonella\.[Hh]aw(thorn)?\.[A-Z][a-z]+`
+`\.[A-Z]{2}\.[mf]`
+
+
+##Backreferencing
+
+**2139**.Rpomonella.**haw**thorn.**Dow**agiac.MI.m
+
+**2140**.Rpomonella.**haw**.**Dow**agiac.MI.m
+
+**2000**.Rpomonella.**Haw**.**Urb**ana.IL.f
+
+**2001**.Rpomonella.**Haw**thorn.**Urb**ana.IL.f
+
+&nbsp;
+
+&nbsp;
+
+**([0-9]{4})**`\.Rpomonella\.[Hh]aw(thorn)?\.`**([A-Z][a-z]{2})**
+`[a-z]+\.[A-Z]{2}\.[mf]`
+
+
+##Backreferencing
+
+**2139**.Rpomonella.**haw**thorn.**Dow**agiac.MI.m
+
+**2140**.Rpomonella.**haw**.**Dow**agiac.MI.m
+
+**2000**.Rpomonella.**Haw**.**Urb**ana.IL.f
+
+**2001**.Rpomonella.**Haw**thorn.**Urb**ana.IL.f
+
+&nbsp;
+
+**([0-9]{4})**`\.Rpomonella\.[Hh]aw(thorn)?\.`**([A-Z][a-z]{2})**
+`[a-z]+\.[A-Z]{2}\.[mf]`
+
+&nbsp;
+
+**Haw_\\3_\\1**
+
+**Thanks for catching this!!**
+
+
+##Grep Exercise (#12)
+
+**Challenge:** Utilizing `grep`, print to standard out the open reading frames in `R.mendax.1.fasta`. 
+
+(start codon: ATG, stop codon: TAA,TAG,TGA)
+
+
+##Grep Exercise (#12)
+
+**Challenge:** Utilizing `grep`, print to standard out the open reading frames in `R.mendax.1.fasta`. 
+
+(start codon: ATG, stop codon: TAA,TAG,TGA)
+
+&nbsp;
+
+`grep -Eo 'ATG([ATCG]{3})+(TAA|TAG|TGA)' R.mendax.1.fasta`
+
+
+##Sed Exercise
+
+**Challenge:** Utilizing `sed` and `grep`, rearrange the columns in `Fall2017MaggotCounts.csv` to list `Host,Location,DateCollected,Number`. Ignore the column headings and include only maggots collected from an `apple` host in September. Print the output to a file named `rearranged.csv`
+
+
+##Sed Exercise
+
+**Challenge:** Utilizing `sed` and `grep`, rearrange the columns in `Fall2017MaggotCounts.csv` to list `Host,Location,DateCollected,Number`. Ignore the column headings and include only maggots collected from an `apple` host in September. Print the output to a file named `rearranged.csv`
+
+&nbsp;
+
+`cat Fall2017MaggotCounts.csv |` 
+`sed -E 's/(9[0-9/]+),([A-Za-z&.]+),`
+`(apple),([0-9]+)/\3,\2,\1,\4/g' |` 
+`grep -E '^a' > rearranged.csv`
+
+##Regex in R and Python
+
+\begincols
+  \begincol{.48\textwidth}
+  
+  `R`:
+  
+  &nbsp;
+  
+  `install.packages('stringr')`
+  
+  &nbsp;
+  
+  `library('stringr')`
+  
+  \endcol
+  \begincol{.48\textwidth}
+  
+  `Python`:
+  
+  &nbsp;
+  
+  `import re`
+  
+  &nbsp;
+  
+  &nbsp;
+  
+  \endcol
+\endcols
+
+##Regex in R and Python
+
+&nbsp;
+
+`R` :
+  
+`result = str_`**extract**`(searchString,regexString)`
+
+May have to escape some metacharacters!
+
+http://stringr.tidyverse.org/articles/regular-expressions.html
+
+&nbsp;
+  
+`Python`:
+  
+`result = re.`**search**`(regexString,searchString)`
+
+`r"regexString"` passes raw string to function 
+
+https://docs.python.org/2/library/re.html
+
+
+##R and Python Exercise
+
+**Challenge:** Utilizing `R` or `Python`, print to standard out the open reading frames in `R.mendax.1.fasta`. 
+
+(start codon: ATG, stop codon: TAA,TAG,TGA)

@@ -1,0 +1,116 @@
+---
+title: "Lecture 14 - Regular Expressions (regex)"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.pos='H')
+```
+
+\pagenumbering{gobble}
+
+&nbsp;
+
+Write regular expressions to match the following prompts, or describe/give an example of a match for the regular expression:
+
+&nbsp;
+
+1\. Species names: *Littorina saxatilis*, *Rhagoletis pomonella*, *Homo sapiens*
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\. A positive marker for Huntington's disease, with more than 35 tandem repeats of `CAG`. Revise to allow repeats of `CAA`, which also encodes glutamine. 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+3\. Latitude and longitude measurements of the format: `41 42'14.5" N, 86 14'01.6" W`
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+4\. `[^\t]+\t[^\t]+\t[^\t]+\t[^\t]+`
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+5\. `(GT)+(G{3}T{3})+`
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+6\. A eukaryotic messanger RNA: an `AUG` start codon, 30-1000 bases of `A`,`U`,`G`,or `C`, and a 5-10 base poly-`A` tail 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+7\. ATP/GTP-binding site motif A: `[AG].{4}GK[ST]`
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+8\. Citations within the text of a paper, of the format `[24]`, `[2,73]`, `[5-7]`, etc. 
+
+
+
+9\. `-?[0-9]{1,2}\.[0-9]+[ ,\t]+-?[0-9]{1,3}\.[0-9]+`
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+10\. You and your collaborators recorded dates of data collection differently and you must match all of the following date formats:
+
+`07/08/2016`
+
+`7.25.16`
+
+`August 5, 2016`
+
+`Sept.8 '16`
+
+`08-2-16`
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+11\. Utilizing grep, print to standard out the `accession version numbers, species, sample information, and gene` in `R.mendax.1.fasta`. (Note, you are grabbing one continuous string.)
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+12\. One additional metacharacter is `|`, which represents `or` (separates alternative match possibilities). Utilizing grep, print to standard out the open reading frames in `R.mendax.1.fasta`. (Start codon: ATG, Stop codons: TAA,TAG,TGA)
+

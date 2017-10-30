@@ -1,0 +1,73 @@
+---
+title: "Regex cheatsheet"
+output: pdf_document
+---
+```{r,echo=FALSE}
+knitr::opts_chunk$set(fig.width=3,fig.height=2,tidy.opts=list(width.cutoff=60),tidy=TRUE)
+```
+
+\pagenumbering{gobble}
+
+**Metacharacters defined**
+
+`^` &nbsp; &nbsp; &nbsp; &nbsp; Start of a string
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `^abc` would match abc, abcdefg, abc123, ...
+
+`$` &nbsp; &nbsp; &nbsp; &nbsp; End of a string
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `abc$` would match abc, endsinabc, 123abc, ...
+
+`.` &nbsp; &nbsp; &nbsp; &nbsp; Any character except `\n` (newline)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `a.c` would match abc, aac, acc, adc, aec, ...
+
+`{...}` &nbsp; &nbsp; &nbsp; &nbsp; Explicit quantifier notation
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `ab{2}c` would match abbc
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `ab{2,4}c` would match abbc, abbbc, or abbbbc
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `{,4}` indicates 4 or less repeats, `{2,}` indicates 2 or more repeats
+
+`[...]` &nbsp; &nbsp; &nbsp; &nbsp; Explicit definition of a character class
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `a[bB]c` would match abc or aBc
+
+`(...)` &nbsp; &nbsp; &nbsp; &nbsp; Logical grouping of a part of an expression; can also be used for back referencing
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `(abc){2}` would match abcabc
+
+`*` &nbsp; &nbsp; &nbsp; &nbsp; 0 or more of the previous expression
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `ab*c` would match ac, abc, abbc, abbbc, ...
+
+`+` &nbsp; &nbsp; &nbsp; &nbsp; 1 or more of the previous expression
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `ab+c` would match abc, abbc, abbbc, ...
+
+`?` &nbsp; &nbsp; &nbsp; &nbsp; 0 or 1 of the previous expression
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `ab?c` would match ac or abc
+
+`|` &nbsp; &nbsp; &nbsp; &nbsp; alternation; this can be used to allow matching multiple, multi-character strings
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `(bill|ted)` would match bill or ted
+
+`\` &nbsp; &nbsp; &nbsp; &nbsp; Preceding one of the above characters, makes it a literal instead of a special character.
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `ab\{2,4\}c` would match ab{2,4}c
+
+**Character classes**
+
+`.` &nbsp; &nbsp; &nbsp; &nbsp; Matches any character except `\n`
+
+`[aeiou]` &nbsp; &nbsp; &nbsp; &nbsp; Matches any single character included in the specified character set
+
+`[^aeiou]` &nbsp; &nbsp; &nbsp; &nbsp; Matches any single character not in the specified character set
+
+`[0-9a-fA-f]` &nbsp; &nbsp; &nbsp; &nbsp; A hyphen specifies a contiguous character range (based on ASCII ordering)
+
+**Back referencing**
+
+If a regular expression or a portion of a regular expression is written within parentheses `()`, this portion of the match can be referenced later using `\` followed by a number. If there is only one set of parentheses used then `\1` would be used. If multiple sets of parentheses are used, you'll have to count `(` from left to right to determine what number to use behind the `\`.
