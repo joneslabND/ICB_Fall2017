@@ -1,0 +1,125 @@
+---
+title: "Simulating ordinary differential equation (ODE) models in R"
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+As with maximum likelihood parameter estimation there is a general recipe for simulating models in `R`.
+
+1. load the `deSolve` package and any other packages we might need
+
+2. write a custom function in the format required by the `ode()` function from the `deSolve` package
+
+2. define parameters, initial values for state variables, and time steps for storing the model simuation
+
+3. run the simulation using the `ode()` function from the `deSolve` package
+
+The code required to accomplish these tasks for density dependent growth are below.
+
+&nbsp;
+
+```{r, echo=TRUE, fig.height=2, fig.width=2}
+### Load the deSolve package and ggplot2 for plotting
+library(deSolve)
+library(ggplot2)
+
+### Custom function that defines the model differential equations
+# the ode function we will use for simulating the model requires the function be defined 
+# with the arguments for time, state variable vector, and parameter vector be provided in that order
+# ode also requires that the dy/dt's be returned as a list
+ddSim<-function(t,y,p){
+  # "unpack" vectors containing state variables (y) and parameters (p)
+  N=y
+  r=p[1]
+  K=p[2]
+  
+  # calculate change in state variables with time, given parameter values 
+  # and current value of state variables
+  dNdt=r*(1-N/K)*N
+  
+  # return list containing change in state variables with time
+  return(list(dNdt))
+}
+
+### Define parameters, initial values for state variables, and time steps
+params=c(0.2,100)
+N0=2
+times=1:100
+
+### Simulate the model using ode()
+modelSim=ode(y=N0,times=times,func=ddSim,parms=params)
+
+# modelSim is a variable that contains a deSolve object
+# this contains some attributes about the way the simulation was conducted, but the key content is a
+# matrix with time as the first column and model state variables in subsequent columns
+
+# convert to a dataframe for plotting purposes
+modelOutput=data.frame(time=modelSim[,1],N=modelSim[,2])
+
+# plot output of simulation
+ggplot(modelOutput,aes(x=time,y=N))+geom_line()+theme_classic()
+```
+
+This general recipe applies to any model based on ordinary differential equations (ODEs). For a model with multiple state variables and therefore multiple differential equations, the vector `y` will be longer than 1 element and the return function must return a vector of dydt's that is converted to a list. For example, a model that has a prey species that grows according to density-dependent growth and a predator of that prey would be coded as follows:
+
+```{r echo=TRUE, eval=FALSE}
+# function for simulationg predator-prey dynamics
+predPreySim<-function(t,y,p){
+    prey=y[1]
+    pred=y[2]
+    
+    r=p[1]
+    K=p[2]
+    consume=p[3]
+    predDeath=p[4]
+    
+    dPrey_dt=r*(1-prey/K)*prey-consume*prey*pred
+    dPred_dt=consume*prey*pred-predDeath*pred
+      
+    return(list(c(dPrey_dt,dPred_dt)))
+  }
+```
+
+```{r echo=FALSE, eval=FALSE}
+predPreySim<-function(t,y,p){
+    prey=y[1]
+    pred=y[2]
+    
+    r=p[1]
+    K=p[2]
+    consume=p[3]
+    predDeath=p[4]
+    
+    dPrey_dt=r*(1-prey/K)*prey-consume*prey*pred
+    dPred_dt=consume*prey*pred-predDeath*pred
+      
+    return(list(c(dPrey_dt,dPred_dt)))
+  }
+
+y0=c(25,1)
+times=1:500
+params=c(0.4,100,0.004,0.3)
+
+out=ode(y=y0,times=times,func=predPreySim,parms=params)
+
+plot(out[,1],out[,2],lwd=2,ylim=c(0,100))
+lines(out[,1],out[,3],lwd=2,col='red')
+legend('topright',c('prey','pred'),lwd=2,col=c('black','red'))
+```
+
+**Challenge**
+
+1. Code the model presented by Gatenby and Vincent. Generate three separate plots showing time series of normal and tumor cells for the three cases presented in Figure 2 of the paper.
+
+&nbsp;
+
+2. The model used in the Gatenby and Vincent paper is a classic model of competition between two species developed by Lotka & Volterra. This model is often written using only competition coefficients ($\alpha$'s), rather than using any carrying capacities. If we wanted to use the classic Lotka-Volterra competition model for two species, how many state variables would we have? How many differential equations would we have? Can you write those equations without using parameters for carrying capacity?
+
+&nbsp;
+
+&nbsp; &nbsp; &nbsp; &nbsp; The criteria for coexistence of two species in the Lotka-Volterra competition model is:
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  $\alpha_{12} < \alpha_{11}$ and $\alpha_{21} < \alpha_{22}$
+
+&nbsp; &nbsp; &nbsp; &nbsp; Run three or more model simulations that demonstrate the validity of these criteria for coexistence.

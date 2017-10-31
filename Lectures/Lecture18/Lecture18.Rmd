@@ -1,0 +1,110 @@
+---
+title: "Lecture 18 - State-space modeling: Gatenby and Vincent 2003"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: ../mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Can't give you much background on cancer...
+
+## CONCEPTUALLY, what does the first half of this paper infer?
+
+## CONCEPTUALLY, what is the basis for that inference?
+
+## CONCEPTUALLY, what was their model?
+
+## Modeling density-independent growth
+
+Unlimited growth of a population over discrete time steps: 
+
+$N_{t+1} = N_t + RN_t$
+
+&nbsp;
+
+Change in population over a single time step: 
+
+$N_{t+1}-N_t = RN_t$
+
+&nbsp;
+
+Change in population over any time step: 
+
+$\frac{\Delta N}{\Delta t} = R_NN$
+
+&nbsp;
+
+Considering a very small change in time gives us the continuous differential equation: 
+
+$\frac{dN}{dt} = RN$
+
+## Density-independent growth isn't very realistic. Why?
+
+## Density-dependent growth adds realism to density-independent growth
+
+$\frac{dN}{dt} = R(1-\alpha N)N$
+
+&nbsp;
+
+$\alpha$ is a coefficient describing competition with individuals from the same population. 
+
+The inverse of this is carrying capacity $\frac{1}{K}$.
+
+So the equation above can also be written as:
+
+&nbsp;
+
+$\frac{dN}{dt} = R(1-\frac{N}{K})N$
+
+## SPECIFICALLY, what was their model?
+
+## State variables vs. parameters
+
+**State variables** are quantities of individuals, matter, or energy that are simulated through time.
+
+&nbsp;
+
+**Parameters** are constants or values that describe change in state variables or relationships amongst state variables.
+
+## What are the the state variables and parameters in Gatenby and Vincent?
+
+## What are the the state variables and parameters in Gatenby and Vincent?
+
+- State variables
+
+    + $N_N$: normal cells
+    
+    + $N_T$: tumor cells
+
+- Parameters
+
+    + $R_N$: growth rate for normal cells; [time^{-1}]
+
+    + $K_N$: carrying capacity for normal cells; [cells]
+    
+    + $\alpha_{NT}$: effect of tumor cells on normal cells; [cells cell^{-1}]
+    
+    + $R_T$: growth rate for tumor cells; [time^{-1}]
+    
+    + $K_T$: carrying capacity for normal cells; [cells]
+    
+    + $\alpha_{TN}$: effect of normal cells on tumor cells; [cells cell^{-1}]
+
+## SPECIFICALLY, what model behavior was the basis for the authors' conceptual inferences?
+
+
+## Wednesday
+
+&nbsp;
+
+talk about how to simulate models with `Python` and `R`
+
+&nbsp;
+
+recreate Gatenby & Vincent 2003 and extend to other examples

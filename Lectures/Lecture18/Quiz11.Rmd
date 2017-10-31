@@ -1,0 +1,61 @@
+---
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Quiz 11 - Gatenby and Vincent 2003
+
+1\) Based on their modeling work, why do Gatenby and Vincent infer "significant theoretical limitations in therapies based solely on cytotoxic drugs"? 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) In a simulation model, *state variables* are quantities of individuals, matter, or energy that are simulated through time. *Parameters* are constants or values that describe change in state variables or relationships amongst state variables. What is one of the state variables in Gatenby and Vincent's model? What is one of the parameters used by Gatenby and Vincent?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Quiz 11 - Gatenby and Vincent 2003
+
+1\) Based on their modeling work, why do Gatenby and Vincent infer "significant theoretical limitations in therapies based solely on cytotoxic drugs"? 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2\) In a simulation model, *state variables* are quantities of individuals, matter, or energy that are simulated through time. *Parameters* are constants or values that describe change in state variables or relationships amongst state variables. What is one of the state variables in Gatenby and Vincent's model? What is one of the parameters used by Gatenby and Vincent?
