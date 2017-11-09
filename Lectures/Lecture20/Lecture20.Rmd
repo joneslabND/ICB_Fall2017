@@ -12,99 +12,125 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Can't give you much background on cancer...
+## What does bioinformatics mean to you?
 
-## CONCEPTUALLY, what does the first half of this paper infer?
+## At a practical level, what is bioinformatics?
 
-## CONCEPTUALLY, what is the basis for that inference?
+## At a practical level, what is bioinformatics?
 
-## CONCEPTUALLY, what was their model?
+- installing tools
 
-## Modeling density-independent growth
+- figuring out how to use tools
 
-Unlimited growth of a population over discrete time steps: 
+- reformating files
 
-$N_{t+1} = N_t + RN_t$
+- searching for patterns
 
-&nbsp;
+## Compiled vs. interpreted languages
 
-Change in population over a single time step: 
-
-$N_{t+1}-N_t = RN_t$
+- **Compiled** - source code is translated to computer-understandable instructions once prior to its use. The compiling process is specific to a given computer based on its hardware, operating system, etc. Examples include C, C++, and sometimes Java.
 
 &nbsp;
 
-Change in population over any time step: 
+&nbsp;
 
-$\frac{\Delta N}{\Delta t} = R_NN$
+- **Interpreted** - human-readable code is read and evaluated by an interpreter each time it is run. However, the interpreter itself is a compiled program. Examples include Python, R, and Perl.
+
+## Source code vs. binaries
+
+- **Source code** - this is often written in a compiled language and must be *compiled* on your machine. Many times these tools will have *dependencies* that may or may not be included with the source code. A common tool for distributing and compiling biocomputational tools is called `make`, usually three steps are required - `./configure`, `make`, `make install`.
 
 &nbsp;
 
-Considering a very small change in time gives us the continuous differential equation: 
+- **Binaries** - these are previously compiled versions of the tool. These are operating system specific and sometimes may not work for your system because they were compiled on a different system. However, when these are available and work for you, it allows you to avoid the sometimes difficult compiling process.
 
-$\frac{dN}{dt} = RN$
+## Installing tools
 
-## Density-independent growth isn't very realistic. Why?
+This week one tool we will use is an aligner called `Muscle`.  This tool is available for free on the creator's website:
 
-## Density-dependent growth adds realism to density-independent growth
-
-$\frac{dN}{dt} = R(1-\alpha N)N$
+https://www.drive5.com/muscle/downloads.htm
 
 &nbsp;
 
-$\alpha$ is a coefficient describing competition with individuals from the same population. 
+&nbsp;
 
-The inverse of this is carrying capacity $\frac{1}{K}$.
+We'll also be using a pattern matching tool called `hmmer`. This tool is also available for free on the web:
 
-So the equation above can also be written as:
+http://hmmer.org/download.html
+
+## Installing tools - example
+
+Often the tools come in a compressed format to make it easier to download. In Unix this compressed format is called a "tarball" because the function used to generate the compressed file is `tar`. Thes "tarballs" are often also "zipped" to further compress them. As a result many tools you download will have the file names like *toolname.tar.gz*.
 
 &nbsp;
 
-$\frac{dN}{dt} = R(1-\frac{N}{K})N$
+We have to "unpack" these compressed files to use the tools. This is accomplished using two tools (`gzip` and `tar`).
 
-## SPECIFICALLY, what was their model?
+`gzip -d toolname.tar.gz`, which will "unzip" our file leaving us with a new file `toolname.tar`
 
-## State variables vs. parameters
+`tar -xf toolname.tar`, which will "untar" our file leaving us with our tool or a directory containing components of our tool
 
-**State variables** are quantities of individuals, matter, or energy that are simulated through time.
+## How do we figure out how to use tools?
+
+## Sequence alignment
+
+Sequence alignment attempts to evaluate the level of sequence conservation or *homology* amongst a set of sequences. Once aligned the sequences can be used to evaluate genetic change and to infer evolutionary history.
+
+\begin{figure}
+  \includegraphics[width=0.85\textwidth]{alignment.jpg}
+\end{figure}
+
+## Profile Hidden Markov Models (HMM)
+
+HMMs have been used to conduct flexible and fast sequence comparisons in a probabalistic framework.
+
+For a simple model that does not allow for insertions or deletions, the probability of a given amino acid or nucleic acid is given.
+
+\begin{figure}
+  \includegraphics[width=0.95\textwidth]{hmm1.jpeg}
+\end{figure}
+
+## Profile Hidden Markov Models (HMM)
+
+This simple profile HMM is also sometimes depicted as a sequence with the size of the residue proportional to its probability.
+
+\begin{figure}
+  \includegraphics[width=0.95\textwidth]{profileHMMlogo.png}
+\end{figure}
+
+## Profile Hidden Markov Models (HMM)
+
+More complex profile HMMs allow for insertions or deletions of amino acids or nucleic acids.
+
+\begin{figure}
+  \includegraphics[width=0.95\textwidth]{hmm2.jpeg}
+\end{figure}
+
+## Reformating files and searching for patterns
+
+You've done some of this already!
 
 &nbsp;
 
-**Parameters** are constants or values that describe change in state variables or relationships amongst state variables.
-
-## What are the the state variables and parameters in Gatenby and Vincent?
-
-## What are the the state variables and parameters in Gatenby and Vincent?
-
-- State variables
-
-    + $N_N$: normal cells
-    
-    + $N_T$: tumor cells
-
-- Parameters
-
-    + $R_N$: growth rate for normal cells; [time^{-1}]
-
-    + $K_N$: carrying capacity for normal cells; [cells]
-    
-    + $\alpha_{NT}$: effect of tumor cells on normal cells; [cells cell^{-1}]
-    
-    + $R_T$: growth rate for tumor cells; [time^{-1}]
-    
-    + $K_T$: carrying capacity for normal cells; [cells]
-    
-    + $\alpha_{TN}$: effect of normal cells on tumor cells; [cells cell^{-1}]
-
-## SPECIFICALLY, what model behavior was the basis for the authors' conceptual inferences?
-
+What were some tools we could use to do this?
 
 ## Wednesday
 
 &nbsp;
 
-talk about how to simulate models with `Python` and `R`
+practice the use of these new tools, as well as using Unix and Python/R functionality to complete some bioinformatics
 
 &nbsp;
 
-recreate Gatenby & Vincent 2003 and extend to other examples
+**Download and "install" Muscle and hmmer3 for Wednesday**
+
+- download correct version for your OS; Muscle for Cygwin - use the Windows binaries
+
+- run within Unix/Cygwin
+    
+- put them somewhere easy to find in Unix/Cygwin
+    
+- don't forget you may need a `./` to execute the command
+    
+- you know they work if you can run the version (-v) or help (-h) option 
+    
