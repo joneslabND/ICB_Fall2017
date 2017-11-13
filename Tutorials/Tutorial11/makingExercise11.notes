@@ -1,0 +1,22 @@
+For problem 1:
+Question:
+Find hits to 3 pfam reference sets in 8 proteomes using Muscle and hmmer3;
+put hits into a single file;
+process in python or R to make figures
+
+-Pulled 8 bacterial proteomes from uniprot and 3 reference alignments from pfam database
+-"Undid" the alignments so that they need to be realigned with Muscle to make HMM profiles
+-Proteomes can be searched with HMM profiles
+
+For problem 2:
+Question:
+Split a fasta file into three fasta files based on whether a motif exists in the
+sequence (using regex); 
+Align the two resulting fasta files that matched one of the two motifs
+
+-Making up two motifs
+1 - AKKPRVZE
+2 - AAQWWRNYGG
+-Pulled four pfam reference alignments
+-Stuck motifs into two of reference alignments at same position in all sequences
+-Combined into fasta with generic seqIDs
