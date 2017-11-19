@@ -1,0 +1,88 @@
+---
+title: "ICB - Practice Final Exam"
+output: pdf_document
+---
+
+Below are a series of example questions that resemble those that will be on the final exam this semester. These questions DO NOT represent an exhaustive coverage of topics from across the semester. Rather they demonstrate the types of questions and level of difficulty you can anticipate for the final exam. 
+
+&nbsp;
+
+&nbsp;
+
+1\. You have a text file named "apples.txt" with the following content:
+
+&nbsp; &nbsp; &nbsp; &nbsp; Apples are the best fruit.
+
+&nbsp; &nbsp; &nbsp; &nbsp; They are the apple of my eye.
+
+&nbsp; &nbsp; &nbsp; &nbsp; Apples grow on apple trees.
+
+&nbsp; &nbsp; &nbsp; &nbsp; Would you like an apple?
+
+Write Unix code to replace all instances of "Apple" or "apple" with "orange".
+
+&nbsp;
+
+&nbsp;
+
+2\. The following R code is intended to count how many values contained in the vector x are above 10 and how many are below 10 and then print both values. Unfortunately, the code isn't working. Fix the code so that it works as intended. 
+
+```{r echo=TRUE,eval=FALSE}
+count=1
+for(i in 1:length(count)){
+  if(x[count]>=10){
+    count=count+1  
+  } 
+    count2=count2+1
+  }
+}
+
+print(c("There are this many values below 10 in x:",count))
+print(c("There are this many values above 10 in x:",count2))
+```
+
+&nbsp;
+
+&nbsp;
+
+3\. Write a regular expression for each of the three descriptions below:
+
+&nbsp; &nbsp; &nbsp; &nbsp; a) any date after December 31st, 1999 in the format "01/01/2000".
+
+&nbsp; &nbsp; &nbsp; &nbsp; b) a DNA sequence beginning with ATG adn containing 10-15 codons (triplets of A, T, C, or G)
+
+&nbsp; &nbsp; &nbsp; &nbsp; c) any of the words raft, draft, graft, or shaft.
+
+\pagebreak
+
+4\. What is returned by the last line of this series of Unix commands?
+
+`$ pwd`
+
+`/Users/stuart/`
+
+`$ ls`
+
+`a.txt b.txt c.txt d.txt`
+
+`$ mkdir temp`
+
+`$ mv *.txt ./temp`
+
+`$ cp ./temp/a.txt ./`
+
+`$ rm -r ./temp`
+
+`$ ls`
+
+&nbsp;
+
+&nbsp;
+
+5\. Write the R code required to plot the values contained in a vector y vs the values in a vectory x and add a spline best fit line to the scatter plot.
+
+&nbsp;
+
+&nbsp;
+
+6\. What is the difference between a matrix and a dataframe in R? 

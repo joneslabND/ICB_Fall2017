@@ -1,0 +1,26 @@
+---
+title: "Practice with documentation"
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+Here are a set of challenges to gain additional experience working with RMarkdown or Jupyter Notebooks. The first to are repeated from lecture on Monday, but 3 and 4 are new.
+
+&nbsp;
+
+&nbsp;
+
+1\. Make a short "How to" document describing the process and showing the code and results for creating and filling a 4x4 dataframe with the numbers 1 to 16.
+
+&nbsp;
+
+2\. Make another "How to" document describing the process and showing the code and results for creating a scatter plot of a random set of 20 numbers between 0 and 50 (**x**) and a second set of 20 numbers (**y**) that are linearly related to x with a slope of 5 and an intercept of 20 with normally distributed error (standard deviation of 5).
+
+&nbsp;
+
+3\. Use RMarkdown or a Jupyter Notebook to write two exam questions and the answers for the final exam in this course. These could be a request for code that completes a particular task, example code that contains errors and must be debugged, or example code that the functionality or end product must be described. Email the `*.rmd` or `*.ipynb` file to Stuart (sjones20@nd.edu). Some of these questions may in fact be used on your final!
+
+&nbsp;
+
+4\. Take the script you submitted last Friday that you used to generate three figures that would be used in a lesson about density-dependent growth and embed that in a pdf handout or Jupyter Notebook that provides an introductory description of the basics of density-dependent growth, including a differential equation, and then describes the effect of each parameter on population dynamics of a population, including the code and figures you generated last week.

@@ -1,0 +1,46 @@
+---
+title: "Exercise 12 - Documentation applications"
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+As usual begin this week, by picking a partner and forking the TA's Exercise 12 Github repo. Then provide collaborative access to the other partner. Clone the forked repo so that you have the required files. Be sure to commit regularly to show how you arrived at your solutions and demonstrate coding effort by both partners.
+
+&nbsp;
+
+&nbsp;
+
+1\. Using Rmarkdown or a Jupyter Notebook, create a HTML file that accomplishes the following:
+
+- generally describes the dataset in "chickwts.txt" (columns are chick weights and feed type)
+
+- generates a plot that summarizes all of the data in "chickwts.txt"
+
+- states a null and alternative hypothesis for difference in chick weight when fed soybean vs. sunflower feed
+
+- tests the null hypothesis above using a likelihood ratio test (remember you'll need to subset the data to have only chicks fed soybean or sunflower feed)
+
+- interpretes the results of the likelihood ratio test
+
+Be sure that your HTML file has a descriptive title, and every time you refer to either variable in the data set (weight or feed) those terms are bolded. To make your hypotheses obvious, be sure they are in italics. Make sure both the `.rmd` or `.ipynb` and the `.html` file are submitted in your final Github repo.
+
+&nbsp;
+
+&nbsp;
+
+2\. Create a Rmarkdown or Jupyter Notebook that describes a regular expression that matches each of the three patterns below. For each regular expression, use Markdown to describe why the regular expression matches the patterns, use R or Python code to show an example where the regular expression matches the desired set of strings and not other strings of your choosing. The three patterns are:
+
+&nbsp; &nbsp; &nbsp; &nbsp; a) times after noon, but before midnight when reported in 24-hour or "military" format (e.g. 15:30)
+
+&nbsp; &nbsp; &nbsp; &nbsp; b) Genus species names expressed in the format G. species (e.g. H. sapien)
+
+&nbsp; &nbsp; &nbsp; &nbsp; c) Social security numbers (e.g 389-05-4771)
+
+Create a HTML file from your work, and be sure the `.rmd` or `.ipynb` and the `.html` file are submitted in your final Github repo.
+
+&nbsp;
+
+##Turning in your assignment via GitHub
+
+Once you have committed all changes to your local Git repos and pushed all of those commits to the forked repo on GitHub, you can "turn in" your assignment using a `pull request`. This can be done from the GitHub repo website. When viewing the forked repo, select "Pull requests" in the upper middle of the screen, then click the green "New pull request" button in the upper right. You'll then see a screen with a history of commits for you and your collaborator, select the green "Create pull request button". In the text box next to your user icon near the top of the page, remove whatever text is there and add "owner's last name - collaborator's last name submission", but obviously substitute your last names. If I and Ann Raiho worked on the project together the text would read "jones-raiho submission". Then click the green "Create pull request" button. **Only one of you will need to create a pull request.**
