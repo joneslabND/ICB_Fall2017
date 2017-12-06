@@ -1,0 +1,132 @@
+---
+title: "Stability of Predator-Prey Dynamics"
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+This project will focus on modeling interactions between predators and their prey or consumer-resource interactions. One of the most famous examples of species interactions in all of ecology is the lynx-snowshoe hare cycle, based on data from the Hudson Bay Trading Co. trapping records. Although population dynamics are often driven by multiple interacting factors, the population dynamics demonstrated by lynx and hare are indicative of strong coupling between the populations as a result of lynx's reliance on snowshoe hare for energy. In this project, we will focus on two classic consumer-resource models, the Lotka-Volterra model and the Rosenzweig-MacArthur model.  
+
+*Lotka-Volterra*
+
+The Lotka-Volterra consumer-resource model is one of the simplest of its kind. The simplicity of this model comes from the assumptions that the only limiting factor for prey population growth is the predator and the only limiting factor for predator population growth is availability of prey. Further, the interactions between predator and prey are linear, sometimes called Type I Functional Responses. These are not unreasonable assumptions, but one can also imagine, as Rosenzweig and MacArthur did, other factors taht might limit growth of the predator or prey populations. The two populations in the Lotka-Volterra consumer-resource model are described by two differential equations:
+
+&nbsp; &nbsp; &nbsp; &nbsp; $\frac{dH}{dt} = bH - aPH$
+
+&nbsp; &nbsp; &nbsp; &nbsp; $\frac{dP}{dt}= eaPH - sP$
+
+Here the prey is $H$ (herbivore), the predator is $P$, and
+$b$, $a$, $e$, and $s$ are prey birth rate, predator attack rate, conversion efficiency of prey to predators, and predator death rate, respectively.
+
+For the Lotka-Volterra consumer-resource model, do the following:
+
+- draw a conceptual model using boxes and arrows; be sure to annotate the boxes with state variable symbols ($H$ and $P$) and arrows with labels and parameter values that influence each arrow.
+
+- simulate dynamics with the following parameters and initial conditions: $b=0.5$, $a=0.02$, $e=0.1$, $s=0.2$, $H_0=25$, $P_0=5$. I recommend running simulations with time steps of 0.1.
+
+- run a number of additional simulations changing one of the parameters at a time to learn how each parameter affects the dynamics of the populations. You should be able to increase or decrease each parameter by as much as a factor of 2 to 4 without causing major problems.
+
+Based on your conceptual model and simulation dynamics, answer the following questions. Support your answers with graphical evidence from simulations or summary values from simulations.
+
+- what can you say about the "role" of each parameter?
+
+- what can you say about the role of predators in the simulations?
+
+- what is the relationship between parameter values and predator-prey cycle length?
+
+```{r, echo=FALSE, eval=FALSE}
+library(deSolve)
+
+lvSim<-function(t,y,p){
+  H=y[1]
+  P=y[2]
+  b=p[1]
+  a=p[2]
+  e=p[3]
+  s=p[4]
+  
+  dHdt=b*H-a*P*H
+  dPdt=a*P*H-s*P
+  return(list(c(dHdt,dPdt)))
+}
+
+time=seq(1,100,0.1)
+params=c(0.5,0.01,0.1,0.2)
+N0=c(25,5)
+
+sim=ode(N0,time,lvSim,params)
+
+params2=c(0.8,0.01,0.1,0.2)
+sim2=ode(N0,time,lvSim,params2)
+
+params3=c(0.5,0.05,0.1,0.2)
+sim3=ode(N0,time,lvSim,params3)
+
+params4=c(0.5,0.05,0.3,0.2)
+sim4=ode(N0,time,lvSim,params4)
+
+params5=c(0.5,0.05,0.1,0.5)
+sim5=ode(N0,time,lvSim,params5)
+```
+
+*Rosenzweig-MacArthur*
+
+Michael Rosenzweig, a graduate student at the time, and his adviser, Robert MacArthur, proposed a predator--prey model that added two components to the Lotka--Volterra model. First, they felt that in the absence of predators, prey would become self-limiting. A second element added to the Lotka--Volterra model was a saturating functional response of the predators to prey density (Type II Functional Response). They felt that if prey density became high enough, predators would reach a maximum number of prey killed per unit time. The R-M model uses the same state variables and most of the same parameters, but adds two additional parameters:
+
+&nbsp; &nbsp; &nbsp; &nbsp; $\frac{dH}{dt} = bH(1-\alpha H) - w\frac{H}{d+H}P$
+
+&nbsp; &nbsp; &nbsp; &nbsp; $\frac{dP}{dt}= ew\frac{H}{d+H}P - sP$
+
+For the Rosenzweig-MacArthur consumer-resource model, do the following:
+
+- draw a conceptual model using boxes and arrows; be sure to annotate the boxes with state variable symbols ($H$ and $P$) and arrows with labels and parameter values that influence each arrow.
+
+- simulate dynamics with the following parameters and initial conditions: $b=0.8$, $e=0.07$, $s=0.2$, $w=5$, $d=400$, $\alpha=0.001$, $H_0=500$, $P_0=120$.
+
+- run a number of additional simulations changing one of the parameters at a time to learn how each parameter affects the dynamics of the populations. You should be able to increase or decrease each parameter by as much as a factor of 2 to 4 without causing major problems.
+
+Based on your conceptual model and simulation dynamics, answer the following questions. Support your answers with graphical evidence from simulations or summary values from simulations.
+
+- how do the dynamics differ from Lotka-Volterra?
+
+- what can you say about the "role" of each parameter, especially what causes the dyamics to differ between the L-V and R-M models?
+
+- what is the relationship between parameter values and predator abundance?
+
+```{r, eval=FALSE,echo=FALSE}
+rmSim<-function(t,y,p){
+  H=y[1]
+  P=y[2]
+  b=p[1]
+  e=p[2]
+  s=p[3]
+  w=p[4]
+  d=p[5]
+  alpha=p[6]
+  
+  dHdt=b*H*(1-alpha*H)-w*(H/(d+H))*P
+  dPdt=e*w*(H/(d+H))*P-s*P
+  
+  return(list(c(dHdt,dPdt)))
+}
+
+times=1:100
+params=c(0.8,0.07,0.2,5,400,0.001)
+N0=c(500,120)
+
+out=ode(N0,times,rmSim,params)
+```
+
+*Paradox of Enrichment*
+Conceptually greater resource availability, higher carrying capacity (lower $\alpha$) of prey, should increase the predator density and buffer that population from extinction. However, Rosenzweig and MacArthur found a negative relationship between prey carrying capacity and predator population stability for some model simulations. They termed this finding *The Paradox of Enrichment*. Use the R-M consumer-resource model from above to simulate dynamics with carrying capcity varying from 800 to 2000 ($\alpha$ 0.00125 to 5e-4).
+
+- what happens as carrying capacity increases?
+
+- why do you think we see the Paradox of Enrichment?
+
+```{r, echo=FALSE,eval=FALSE}
+params=c(0.8,0.07,0.2,5,400,1/8000)
+N0=c(500,120)
+
+out=ode(N0,times,rmSim,params)
+```

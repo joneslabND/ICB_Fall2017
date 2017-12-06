@@ -1,0 +1,180 @@
+---
+title: "ANOVA vs. Regression: When to draw the line"
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+This project will focus on the difference between linear models that use categorical or continuous predictor variables. When designing experiments, scientists are often limited by the number of experimental units they can use. These practical limitations may arise due to the cost of using animal subjects, the number of tanks available for aquatic mesocosm studies, or simply the number of hours in the day. This question will focus on the optimal use of these precious experimental units to increase our "statistical power" to detect the effect of a treatment. 
+
+A experimental design question that arises when experimental units are limiting is whether to distribute the units amongst some number of replicated discrete treatment levels (ANOVA-design) or spread the experimental units along a continuous gradient of treatment levels (regression-design). In this project, we will first revisit ANOVA and regression analyses in two cases where it is clear what experimental design was chosen. We will then evaluate the ability of these two experimental designs to detect a treatment effect (i.e. their statistical power) using simulated data.
+
+&nbsp;
+
+**An ANOVA-design and a regression-design experiment**
+
+1\) A student conducted an experiment evaluating the effect of three different new antibiotics on growth of *E. coli* in lab cultures. Using the data in `antibiotics.txt`, generate a plot that summarizes the results and test for an effect of antibiotic treatments on the growth of *E. coli* using an ANOVA-design linear model and likelihood ratio test.
+
+&nbsp;
+
+2\) Another student conducted an experiment evaluating the effect of sugar concentration on growth of *E. coli* in lab cultures. Using the data in `sugar.txt`, generate a plot that summarizes the results and test for an effect of sugar concentration on growth of *E. coli* using a regression-design linear model and likelihood ratio test.
+
+```{r, eval=FALSE,echo=FALSE}
+# making and testing ANOVA-design results
+means=rep(c(20,4,18,10),each=4)
+sd=2.5
+antibiotics=data.frame("trt"=rep(c('control','ab1','ab2','ab3'),each=4),"growth"=rnorm(n=length(means),mean=means,sd=sd))
+
+#write.table(antibiotics,"antibiotics.csv",row.names=FALSE,sep=",")
+
+# analyze
+library(ggplot2)
+
+ggplot(data=antibiotics,aes(x=trt,y=growth))+geom_bar(stat="summary",fun.y="mean")+theme_classic()
+
+nullMod<-function(p,x,y){
+  -sum(dnorm(x=y,mean=p[1],sd=exp(p[2]),log=TRUE))
+}
+
+anovaMod<-function(p,x,y){
+  -sum(dnorm(x=y,mean=p[1]+p[2]*x[,1]+p[3]*x[,2]+p[4]*x[,3],sd=exp(p[5]),log=TRUE))
+}
+
+x=matrix(0,nrow(antibiotics),3)
+x[antibiotics$trt=="ab1",1]=1
+x[antibiotics$trt=="ab2",2]=1
+x[antibiotics$trt=="ab3",3]=1
+
+nullFit=optim(par=c(10,1),fn=nullMod,x=antibiotics$trt,y=antibiotics$growth)
+anovaFit=optim(par=c(20,-15,-3,-12,1),fn=anovaMod,x=x,y=antibiotics$growth)
+
+pchisq(nullFit$value-anovaFit$value,df=3,lower.tail=FALSE)
+
+# making and testing regression-design results
+x=runif(n=16,0,20)
+sd=2.5
+sugar=data.frame("sugar"=x,"growth"=rnorm(length(x),mean=x*1.7,sd=sd))
+
+#write.table(sugar,"sugar.csv",row.names=FALSE,sep=",")
+
+#analyze
+ggplot(data=sugar,aes(x=sugar,y=growth))+geom_point()+theme_classic()
+
+nullMod<-function(p,x,y){
+  -sum(dnorm(x=y,mean=p[1],sd=exp(p[2]),log=TRUE))
+}
+
+regMod<-function(p,x,y){
+  -sum(dnorm(x=y,mean=p[1]+p[2]*x,sd=exp(p[3]),log=TRUE))
+}
+
+nullFit=optim(par=c(15,1),fn=nullMod,x=sugar$sugar,y=sugar$growth)
+regFit=optim(par=c(0,1,1),fn=regMod,x=sugar$sugar,y=sugar$growth)
+
+pchisq(nullFit$value-regFit$value,df=1,lower.tail=FALSE)
+```
+
+&nbsp; 
+
+**A statistical power analysis**
+
+Experimentalists and statisticians will often use simulated data to help design an experiment. In these analyses, the investigator generates data that will look like the expected results of an experiment assuming some amount of variance or error. The investigator can then ask how many experimental units would be required to detect a significant effect, assuming the strength of the relationship and error assumed when simulating data. We will use this approach to ask whether ANOVA- or regression-design experiments are more powerful in detecting a continuous relationship between two variables.
+
+Assume that an independent variable `x` is linearly related to a dependent variable `y` with a slope ($\beta_1$) of 0.4 and a y-intercept ($\beta_0$) of 10. Imagine that we have 16 experimental units that can be used to test for an effect of `x` on `y`. One could randomly distribute the experimental units along a gradient of `x` (regression design) or one could replicate two levels of `x` 12 times each and ask whether low or high levels of `x` generate different levels of `y` (t-test design). An intermediate approach would be to have 8 replicates of three levels of `x` or 4 replicates of six levels of `x` and so on (ANOVA design).
+
+Using the relationship between `x` and `y` defined by $\beta_1 = 0.4$ and $\beta_0 = 10$, we can generate a random dataset with 24 observations of `y` for any experimental design of interest given some level of error in our observations. We define our error by the standard deviation ($\sigma$) of normally distributed errors that we can add to our simulated values of `y`. Because our results will vary a bit from one simulated data set to another, it is a good idea to adopt something called a *monte carlo* approach where we run multiple (say 10) versions of a power analysis for a given experimental design and $\sigma$.
+
+To evaluate the relative statistical power of regression- and ANOVA-design experiments, simulate 10 random experiments with a regression design and 10 random experiments with a two-level ANOVA-design (really this is a t-test design) for each of eight values for $\sigma$ (1, 2, 4, 6, 8, 12, 16, 24). Let's say you are able to generate experimental units with `x` between 0 and 50. Repeat this process for a four- and eight-level ANOVA design (remember you only have 24 experimental units). Use the average p-value from likelihood ratio tests across your monte carlo runs as your metric of statistical power.
+
+How does the ANOVA- vs regression-design perform? Does the relative performance of these experimental designs depend on the number of levels in the ANOVA experiment (2, 4, vs. 8)?
+
+```{r, eval=FALSE,echo=FALSE}
+# testing power analysis
+b1=0.4
+b0=10
+N=16
+
+sigmas=c(1,2,4,6,8,12,16,24)
+
+# define function for simulating data
+simY<-function(sigma,level=0,b1=1,b0=10,N=16,minX=0,maxX=50){
+  #if level ==0 then regression
+  if(level==0){
+    x=runif(N,minX,maxX)
+    y=rnorm(N,mean=b1*x+b0,sd=sigma)
+  }else{
+    x=rep(seq(minX,maxX,length.out=level),each=N/level)
+    y=rnorm(N,b1*x+b0,sd=sigma)
+  }
+  return(data.frame(x=x,y=y))
+}
+
+# define models for likelihood ratio tests
+nullMod<-function(p,x,y){
+   -sum(dnorm(x=y,mean=p[1],sd=exp(p[2]),log=TRUE))
+}
+
+anovaMod2<-function(p,x,y){
+  -sum(dnorm(x=y,mean=p[1]+p[2]*x,sd=exp(p[3]),log=TRUE))
+}
+
+anovaMod4<-function(p,x,y){
+  -sum(dnorm(x=y,mean=p[1]+p[2]*x[,1]+p[3]*x[,2]+p[4]*x[,3],sd=exp(p[5]),log=TRUE))
+}
+
+anovaMod8<-function(p,x,y){
+  -sum(dnorm(x=y,mean=p[1]+p[2]*x[,1]+p[3]*x[,2]+p[4]*x[,3]+p[5]*x[,4]+p[6]*x[,5]+p[7]*x[,6]+p[8]*x[,7],sd=exp(p[9]),log=TRUE))
+}
+
+regMod<-function(p,x,y){
+  -sum(dnorm(x=y,mean=p[1]+p[2]*x,sd=exp(p[3]),log=TRUE))
+}
+
+#simulate Nmc monte carlo simulations for each sigma and each design
+Nmc=10
+storeANOVA2ps=matrix(NA,length(sigmas),Nmc)
+storeANOVA4ps=matrix(NA,length(sigmas),Nmc)
+storeANOVA8ps=matrix(NA,length(sigmas),Nmc)
+storeREGps=matrix(NA,length(sigmas),Nmc)
+
+x2=rep(c(0,1),each=N/2)
+x4=matrix(0,N,3)
+x4[5:8,1]=1
+x4[9:12,2]=1
+x4[13:16,3]=1
+x8=matrix(0,N,7)
+x8[3:4,1]=1
+x8[5:6,2]=1
+x8[7:8,3]=1
+x8[9:10,4]=1
+x8[11:12,5]=1
+x8[13:14,6]=1
+x8[15:16,7]=1
+
+for(i in 1:length(sigmas)){
+  for(j in 1:Nmc){
+    anovaSim2=simY(sigma=sigmas[i],level=2)
+    anovaSim4=simY(sigma=sigmas[i],level=4)
+    anovaSim8=simY(sigma=sigmas[i],level=8)
+    regSim=simY(sigma=sigmas[i])
+    
+    nullFit2=optim(c(50,1),nullMod,x=anovaSim2$x,y=anovaSim2$y)
+    nullFit4=optim(c(50,1),nullMod,x=anovaSim4$x,y=anovaSim4$y)
+    nullFit8=optim(c(50,1),nullMod,x=anovaSim8$x,y=anovaSim8$y)
+    nullFit0=optim(c(50,1),nullMod,x=regSim$x,y=regSim$y)
+    
+    anovaFit2=optim(c(10,90,1),anovaMod2,x=x2,y=anovaSim2$y)
+    anovaFit4=optim(c(10,seq(0,110,length.out=3),1),anovaMod4,x=x4,y=anovaSim4$y,control=list(maxit=5000))
+    anovaFit8=optim(c(0,seq(0,110,length.out=7),1),anovaMod8,x=x8,y=anovaSim8$y,control=list(maxit=5000))
+    regFit=optim(c(8,1.5,1),regMod,x=regSim$x,y=regSim$y)
+  
+    storeANOVA2ps[i,j]=pchisq(nullFit2$value-anovaFit2$value,df=1,lower.tail=FALSE)
+    storeANOVA4ps[i,j]=pchisq(nullFit4$value-anovaFit4$value,df=3,lower.tail=FALSE)
+    storeANOVA8ps[i,j]=pchisq(nullFit8$value-anovaFit8$value,df=7,lower.tail=FALSE)
+    storeREGps[i,j]=pchisq(nullFit0$value-regFit$value,df=1,lower.tail=FALSE)
+  }
+}
+
+barplot(rowSums((storeANOVA8ps<0.05)*1),names.arg=sigmas)
+```
+

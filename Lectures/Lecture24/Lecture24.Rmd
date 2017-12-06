@@ -1,0 +1,38 @@
+---
+title: "Lecture 24 - Notre Dame's Center for Research Computing"
+output: 
+  beamer_presentation:
+    fig_caption: false
+    includes:
+      in_header: ../mypreamble.tex
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Updates
+
+- Exercise 12 due Friday (11/24)
+
+&nbsp;
+
+- groups picked for projects
+
+&nbsp;
+
+- group project work starts Monday (11/27)
+
+    + project tasks and rubric distributed that day
+    
+    + peer code review on Wednesday (12/6)
+
+    + TAs will grade code updates through Friday (12/8); send email with repo URL
+
+## 
+
+
+
+
+## Examples of how the CRC is used

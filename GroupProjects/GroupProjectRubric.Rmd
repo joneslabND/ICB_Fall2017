@@ -1,0 +1,34 @@
+---
+title: "Group Project Rubric"
+output: pdf_document
+---
+
+\pagenumbering{gobble}
+
+The goal of the group projects in this course is to provide an additional, and more involved, experience with the application of computational biology approaches. The more indepth project, along with the application weeks, will also provide an opportunity for discernment of students' areas of interest within computational biology. Individuals from each group will receive the same grade on the project, and it is up to group members to ensure equity in workload. We will require documentation of plans for work distribution at the outset of the project in an attempt to facilitate shared effort across the group. Regardless of topic chosen, all students will be evaluated on the same criteria presented below.
+
+Given the in and out of class time (four class periods and a total of two weeks) provided for this project and an opportunity to receive peer review of your work (in class on December 6th), our expectations for clarity and efficiency of code, including good commenting practices and documentation, will be higher than for weekly exercises across the semester. Of course, functionality of the code outweighs efficiency and reusability, but both aspects will be graded. The number, type, and format of final files submitted (via an email of a github repository url) are up to the group, but we imagine the repository might include one or more planning documents as text files, word documents, or html files produced with Rmarkdown or a Jupyter Notebook, one or more scripts containing code used to complete the project, and/or one or more html, Rmarkdown, or Jupyter Notebook files summarizing the results of the project. The following 
+
+&nbsp;
+
+**Projects are due at noon on December 8th**
+
+You are expected to email your teaching assistant a url for the group project Github repo sometime before noon on December 8th. Any commits made to the repo before noon on December 8th will be evaluated according to the criteria and points distribution described below.
+
+&nbsp;
+
+- **Documented project plan -- 10 pts**
+
+- **Pseudocode for each sub-problem -- 5 pts**
+
+- **Completion of the problem with functional code -- 50 pts**
+
+- **Well-organized and commented code -- 10 pts**
+
+- **Documented incremental progress on code via Github commits -- 5 pts**
+
+- **Within group review of code documented via Github issues and/or commits -- 5 pts**
+
+- **Efficient code -- 5 pts**
+
+- **Peer review of another group's project documented in a text file -- 10 pts**
